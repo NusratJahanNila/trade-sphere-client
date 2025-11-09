@@ -57,7 +57,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="text-xl">Trade Sphere</a>
+                <a className="text-xl font-bold">Trade Sphere</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -83,8 +83,8 @@ const Navbar = () => {
                             <button onClick={handleLogout} className="btn btn-primary">Logout</button>
                         </div> : <Link to='/login' className="btn btn-primary">Login</Link>
                     } */}
-                    <Link to='/login' className="btn btn-primary">Login</Link>
-                    <Link to='/register' className="btn btn-primary">Register</Link>
+                    <Link to='/auth/login' className="btn btn-primary">Login</Link>
+                    <Link to='/auth/register' className="btn btn-primary">Register</Link>
                 </div>
             </div>
         </div>

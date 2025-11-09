@@ -28,7 +28,7 @@ const Banner = () => {
       >
         {/* {skills.map((skill) => ( */}
           <SwiperSlide >
-            <div className="rounded-2xl overflow-hidden shadow-xl group grid grid-cols-2 gap-5 items-center">
+            <div className="rounded-2xl overflow-hidden shadow-xl group grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
               <img
                 // src={skill.image}
                 // alt={skill.skillName}
@@ -43,7 +43,7 @@ const Banner = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide >
-            <div className="rounded-2xl overflow-hidden shadow-xl group grid grid-cols-2 gap-5 items-center">
+            <div className="rounded-2xl overflow-hidden shadow-xl group grid-cols-1 md:grid-cols-2 gap-5 items-center">
               <img
                 // src={skill.image}
                 // alt={skill.skillName}
