@@ -1,23 +1,23 @@
 import { Link } from 'react-router';
 import { AuthContext } from '../../Provider/AuthContext';
-import { use } from 'react';
+import { use, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 // import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const { user, logout, loading } = use(AuthContext);
     // theme
-    // const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-    // useEffect(() => {
-    //     const html = document.querySelector("html");
-    //     html.setAttribute("data-theme", theme);
-    //     localStorage.setItem("theme", theme);
-    // }, [theme]);
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    useEffect(() => {
+        const html = document.querySelector("html");
+        html.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
 
 
-    // const handleTheme = (checked) => {
-    //     setTheme(checked ? "dark" : "light");
-    // };
+    const handleTheme = (checked) => {
+        setTheme(checked ? "dark" : "light");
+    };
 
 
     // Logout
@@ -63,7 +63,7 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end flex gap-2">
                 <div className="navbar-end ">
                     {loading ? <p>loading...</p> :
                         user ?
@@ -83,10 +83,15 @@ const Navbar = () => {
                                 <Link to='/auth/login' className="btn bg-blue-900 hover:bg-blue-800 text-white">Login</Link>
                                 <Link to='/auth/register' className="btn bg-blue-900 hover:bg-blue-800 text-white">Signup</Link>
                             </div>
-                    }
-
+                    }   
 
                 </div>
+                <input
+                        onChange={(e) => handleTheme(e.target.checked)}
+                        type="checkbox"
+                        defaultChecked={localStorage.getItem('theme') === "dark"}
+                        className="toggle"
+                    />
             </div>
         </div>
     );
