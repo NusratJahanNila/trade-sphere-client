@@ -1,10 +1,11 @@
-// import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router';
-// import { AuthContext } from '../Provider/AuthContext';
+import { AuthContext } from '../../Provider/AuthContext';
+import { use } from 'react';
+import toast from 'react-hot-toast';
 // import { toast } from 'react-toastify';
 
 const Navbar = () => {
-    // const { user, logout } = useContext(AuthContext);
+    const { user, logout, loading } = use(AuthContext);
     // theme
     // const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     // useEffect(() => {
@@ -20,28 +21,26 @@ const Navbar = () => {
 
 
     // Logout
-    // const handleLogout = (e) => {
-    //     e.preventDefault();
-    //     logout()
-    //         .then(() => {
-    //             toast.success('Logged out successfully!!')
-    //         }).catch((error) => {
-    //             console.log(error)
-    //         });
-    // }
+    const handleLogout = (e) => {
+        e.preventDefault();
+        logout()
+            .then(() => {
+                toast.success('Logged out successfully!!')
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
     const links = <>
-        
+
         <li><Link to='/all-models'>All Products</Link></li>
-        <li><Link to='/all-models'>My Export</Link></li>
-        <li><Link to='/all-models'>My Import</Link></li>
-        <li><Link to='/all-models'>Add Export</Link></li>
-        {/* {
+
+        {
             user && <>
-                <li><Link to='/add-models'>Add Models</Link></li>
-                <li><Link to='/my-models'>My Models</Link></li>
-                <li><Link to='/downloads'>Downloads</Link></li>
+                <li><Link to='/all-models'>My Export</Link></li>
+                <li><Link to='/all-models'>My Import</Link></li>
+                <li><Link to='/all-models'>Add Export</Link></li>
             </>
-        } */}
+        }
 
     </>
     return (
@@ -65,26 +64,28 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className='flex items-center gap-3'>
-                    {/* <input
-                        onChange={(e) => handleTheme(e.target.checked)}
-                        type="checkbox"
-                        defaultChecked={localStorage.getItem('theme') === "dark"}
-                        className="toggle" 
-                    /> */}
+                <div className="navbar-end ">
+                    {loading ? <p>loading...</p> :
+                        user ?
+                            <div className='flex gap-2'>
+                                <div className="">
+                                    <img
+                                        referrerPolicy="no-referrer"
+                                        src={user.photoURL || ''}
+                                        alt="user"
+                                        className='w-10 h-10 rounded-full border-2 border-blue-900 object-cover' />
+                                </div>
 
-                    {/* {
-                        user && user.photoURL ? <div className="mr-2 flex gap-2">
-                            <img
-                                src={user?.photoURL}
-                                alt="user"
-                                referrerPolicy="no-referrer"
-                                className='rounded-full w-12' />
-                            <button onClick={handleLogout} className="btn btn-primary">Logout</button>
-                        </div> : <Link to='/login' className="btn btn-primary">Login</Link>
-                    } */}
-                    <Link to='/auth/login' className="btn btn-primary">Login</Link>
-                    <Link to='/auth/register' className="btn btn-primary">Register</Link>
+                                <button onClick={handleLogout} className="btn bg-blue-900 hover:bg-blue-800 text-white">Logout</button>
+                            </div>
+                            :
+                            <div className='flex gap-2'>
+                                <Link to='/auth/login' className="btn bg-blue-900 hover:bg-blue-800 text-white">Login</Link>
+                                <Link to='/auth/register' className="btn bg-blue-900 hover:bg-blue-800 text-white">Signup</Link>
+                            </div>
+                    }
+
+
                 </div>
             </div>
         </div>
