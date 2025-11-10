@@ -32,7 +32,7 @@ const Navbar = () => {
     }
     const links = <>
 
-        <li><Link to='/all-models'>All Products</Link></li>
+        <li><Link to='/all-products'>All Products</Link></li>
 
         {
             user && <>
