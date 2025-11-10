@@ -7,44 +7,51 @@ import Register from "../Pages/Register/Register";
 import AllProducts from "../Pages/AllProducts/AllProducts";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import PrivateRoute from "./PrivateRoute";
+import AddExport from "../Pages/Export/AddExport";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    children:[
-        {
-            path:'/',
-            element:<Home></Home>,
-            loader:()=>fetch('http://localhost:3000/latest-products')
-        },
-        {
-            path:'/all-products',
-            element:<AllProducts></AllProducts>,
-            loader:()=>fetch('http://localhost:3000/products')
-        },
-        {
-            path:'/product-details/:id',
-            element:<PrivateRoute>
-              <ProductDetails></ProductDetails>
-            </PrivateRoute>,
-            
-        },
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>,
+        loader: () => fetch('http://localhost:3000/latest-products')
+      },
+      {
+        path: '/all-products',
+        element: <AllProducts></AllProducts>,
+        loader: () => fetch('http://localhost:3000/products')
+      },
+      {
+        path: '/product-details/:id',
+        element: <PrivateRoute>
+          <ProductDetails></ProductDetails>
+        </PrivateRoute>,
+
+      },
+      {
+        path: '/add-export',
+        element: <PrivateRoute>
+          <AddExport></AddExport>
+        </PrivateRoute>
+      },
 
     ]
   },
   {
     path: '/auth',
-    element:<AuthLayout></AuthLayout>,
-    children:[
-        {
-            path:'/auth/login',
-            element:<Login></Login>
-        },
-        {
-            path:'/auth/register',
-            element:<Register></Register>
-        },
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        path: '/auth/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/auth/register',
+        element: <Register></Register>
+      },
     ]
   }
 ]);
