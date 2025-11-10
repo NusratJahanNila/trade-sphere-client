@@ -32,6 +32,7 @@ const Navbar = () => {
     }
     const links = <>
 
+        <li><Link to='/'>Home</Link></li>
         <li><Link to='/all-products'>All Products</Link></li>
 
         {
@@ -56,7 +57,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="text-xl font-bold">Trade Sphere</a>
+                <Link to='/' className="text-xl font-bold">Trade Sphere</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
