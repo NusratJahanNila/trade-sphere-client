@@ -37,8 +37,8 @@ const Navbar = () => {
 
         {
             user && <>
-                <li><Link to='/all-models'>My Export</Link></li>
-                <li><Link to='/all-models'>My Import</Link></li>
+                <li><Link to='/my-export'>My Export</Link></li>
+                <li><Link to='/all-imports'>My Import</Link></li>
                 <li><Link to='/add-export'>Add Export</Link></li>
             </>
         }
