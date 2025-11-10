@@ -5,6 +5,8 @@ import AuthLayout from "../Layout/AuthLayout";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import AllProducts from "../Pages/AllProducts/AllProducts";
+import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,13 @@ const router = createBrowserRouter([
             path:'/all-products',
             element:<AllProducts></AllProducts>,
             loader:()=>fetch('http://localhost:3000/products')
+        },
+        {
+            path:'/product-details/:id',
+            element:<PrivateRoute>
+              <ProductDetails></ProductDetails>
+            </PrivateRoute>,
+            
         },
 
     ]

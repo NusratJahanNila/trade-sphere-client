@@ -4,6 +4,7 @@ import { Link } from "react-router";
 
 const ProductCard = ({ product }) => {
   const {
+    _id,
     productName,
     productImage,
     price,
@@ -55,7 +56,7 @@ const ProductCard = ({ product }) => {
       {/* See Details Button */}
       <div className="px-4 pb-4 mt-auto">
         <Link
-          to={``}
+          to={`/product-details/${_id}`}
           className="block w-full text-center bg-primary text-white font-semibold py-2 rounded-xl hover:bg-blue-700 transition-colors duration-200"
         >
           See Details
