@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddExport from "../Pages/Export/AddExport";
 import MyExport from "../Pages/Export/MyExport";
 import UpdateExport from "../Components/UpdateExport/UpdateExport";
+import MyImports from "../Pages/Import/MyImports";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,12 @@ const router = createBrowserRouter([
         path: '/my-export',
         element: <PrivateRoute>
           <MyExport />
+        </PrivateRoute>
+      },
+      {
+        path: '/my-imports',
+        element: <PrivateRoute>
+          <MyImports></MyImports>
         </PrivateRoute>
       },
 

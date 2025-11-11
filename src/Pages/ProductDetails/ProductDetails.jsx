@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { FaRegStar } from "react-icons/fa";
 import { useParams } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
     const { user, } = use(AuthContext);
@@ -53,10 +54,43 @@ const ProductDetails = () => {
         }
     };
 
-    // Handle submit
+    // Handle submit -->added to import database
     const handleQuantity = (e) => {
         e.preventDefault();
         console.log("Submitted quantity:", quantity);
+        const addedQuantity=e.target.quantity.value;
+        // console.log('quantity by user=',userQuantity);
+        // console.log('the product details=',product);
+
+        const importData={
+            productName: product.productName,
+            productImage: product.productImage,
+            price: product.price,
+            originCountry: product.originCountry,
+            rating: product.rating,  
+            userQuantity: addedQuantity,
+            exportBy: product.exportBy,
+            exportAt: product.exportAt,
+            importBy:user.email
+        }
+        // console.log(importData);
+        fetch('http://localhost:3000/imports',{
+                    method: "POST",
+                    headers:{
+                        'content-type': 'application/json'
+                    },
+                    body:JSON.stringify(importData)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(data)
+                    toast.success('Product added successfully')
+                    document.getElementById('my_modal_3').close();
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+
     };
 
     return (
