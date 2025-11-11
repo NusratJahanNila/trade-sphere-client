@@ -3,19 +3,10 @@ import { FaRegStar } from "react-icons/fa";
 import { Link } from "react-router";
 
 const ProductCard = ({ product }) => {
-  const {
-    _id,
-    productName,
-    productImage,
-    price,
-    originCountry,
-    rating,
-    availableQuantity,
-  } = product;
+  const {_id,productName,  productImage,price,  originCountry, rating, availableQuantity, } = product;
 
   return (
-    <div className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 h-[420px]">
-      {/* Product Image */}
+    <div className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 h-[420px] border border-gray-200">
       <div className="p-3">
         <img
           src={productImage}
@@ -24,9 +15,7 @@ const ProductCard = ({ product }) => {
         />
       </div>
 
-      {/* Info Section */}
       <div className="px-4 flex-1 flex flex-col justify-between">
-        {/* Top Row: Country + Rating */}
         <div className="flex items-center justify-between text-sm text-gray-500 mb-1">
           <span className="font-medium">{originCountry}</span>
           <span className="flex items-center gap-1">
@@ -35,12 +24,10 @@ const ProductCard = ({ product }) => {
           </span>
         </div>
 
-        {/* Product Name */}
         <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-1">
           {productName}
         </h3>
 
-        {/* Price & Quantity */}
         <div className="text-sm text-gray-600 mb-3">
           <p>
             <span className="font-medium text-gray-700">Price:</span>{" "}
@@ -53,7 +40,6 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
 
-      {/* See Details Button */}
       <div className="px-4 pb-4 mt-auto">
         <Link
           to={`/product-details/${_id}`}

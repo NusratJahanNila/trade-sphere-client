@@ -1,5 +1,6 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
+import { Edit2, Star, Trash2 } from 'lucide-react';
 
 const MyExport = () => {
     const { user, loading, setLoading } = use(AuthContext);
@@ -17,24 +18,50 @@ const MyExport = () => {
         return <p>Loading...</p>
     }
     return (
-        <div>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6'>
             {
-                products.map(product => <div className="card bg-base-100 w-96 shadow-sm">
-                    <figure>
+                products.map(product => <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col h-[410px] border-gray-200 border">
+                    {/* Product Image */}
+                    <div className="rounded-xl overflow-hidden mb-3">
                         <img
                             src={product.productImage}
-                            alt={product.productName} />
-                    </figure>
-                    <div className="card-body">
-                        <h2 className="card-title">
-                            {product.productName}
-                        </h2>
-                        <div className="badge badge-secondary">{product.originCountry}</div>
-                        <div className="card-actions justify-end">
-                            <div className="badge badge-outline">price:{product.price}</div>
-                            <div className="badge badge-outline">⭐{product.rating}</div>
-                            <div className="badge badge-outline">{product.availableQuantity}</div>
+                            alt={product.productName}
+                            className="w-full h-44 object-cover"
+                        />
+                    </div>
+
+                    {/* Product Info */}
+                    <div className=" flex flex-col justify-start">
+                        <div className="flex justify-between items-center text-sm text-gray-500 mb-1">
+                            <span>{product.originCountry}</span>
+                            <span className="flex items-center gap-1">
+                                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                                {product.rating}
+                            </span>
                         </div>
+
+                        <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-1">
+                            {product.productName}
+                        </h3>
+
+                        <p className="text-gray-700 font-medium">
+                            Price: <span className="text-primary">{product.price} BDT</span>
+                        </p>
+
+                        <p className="text-gray-600 text-sm mb-3">
+                            Available: {product.availableQuantity} pcs
+                        </p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-3 mt-2">
+                        <button className="flex-1 btn btn-primary text-white rounded-lg py-2">
+                            <Edit2 className="w-4 h-4 mr-1" /> Update
+                        </button>
+
+                        <button className="flex-1 btn bg-red-500 text-white hover:bg-red-600 rounded-lg py-2">
+                            <Trash2 className="w-4 h-4 mr-1" /> Delete
+                        </button>
                     </div>
                 </div>)
             }
