@@ -9,6 +9,7 @@ import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import PrivateRoute from "./PrivateRoute";
 import AddExport from "../Pages/Export/AddExport";
 import MyExport from "../Pages/Export/MyExport";
+import UpdateExport from "../Components/UpdateExport/UpdateExport";
 
 const router = createBrowserRouter([
   {

@@ -1,47 +1,48 @@
-import React, { use } from 'react';
-import { useNavigate } from 'react-router';
-import { AuthContext } from '../../Provider/AuthContext';
+import React from 'react';
+import { useLoaderData, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
-const AddExport = () => {
-    const navigate=useNavigate();
-    const {user}=use(AuthContext);
-    console.log(user)
+const UpdateExport = () => {
+    const product = useLoaderData();
+    console.log(product)
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    // update
+    const handleUpdate = (e, id) => {
+        console.log('id from handleUpdate:', id)
         e.preventDefault();
         const formData = {
             productName: e.target.name.value,
             productImage: e.target.photoURL.value,
             price: e.target.price.value,
             originCountry: e.target.country.value,
-            rating: e.target.rating.value,  
+            rating: e.target.rating.value,
             availableQuantity: e.target.quantity.value,
-            exportBy: user.email,
-            exportAt: new Date()
         }
-        fetch('http://localhost:3000/products',{
-            method: "POST",
-            headers:{
+        fetch(`http://localhost:3000/my-export/${id}`, {
+            method: "PUT",
+            headers: {
                 'content-type': 'application/json'
             },
-            body:JSON.stringify(formData)
+            body: JSON.stringify(formData)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            toast.success('Product added successfully')
-            navigate('/all-products');
-            console.log(data)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Product updated successfully')
+                navigate('/my-export');
+                console.log(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
     return (
-        <div className="max-w-md mx-auto bg-base-100 shadow-lg rounded-lg p-6 mt-10">
-            <h2 className="text-2xl font-bold text-center mb-6">Add Export</h2>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="modal-box">
+            <form method="dialog">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:bg-red-600 hover:text-white">✕</button>
+            </form>
+            <form onSubmit={handleUpdate} className="space-y-4">
+                <h2 className='text-center text-xl font-bold '>Update here!</h2>
                 {/* Name */}
                 <div className="form-control">
                     <label className="label">
@@ -53,6 +54,7 @@ const AddExport = () => {
                         placeholder="Enter product name"
                         className="input input-bordered w-full"
                         required
+                        defaultValue={product.productName}
                     />
                 </div>
 
@@ -67,6 +69,7 @@ const AddExport = () => {
                         placeholder="Enter image url"
                         className="input input-bordered w-full"
                         required
+                        defaultValue={product.productImage}
                     />
                 </div>
 
@@ -81,10 +84,11 @@ const AddExport = () => {
                         placeholder="Enter price"
                         className="input input-bordered w-full"
                         required
+                        defaultValue={product.price}
                     />
                 </div>
 
-                {/* Origin Country */}
+                {/* Origin */}
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text font-medium">Origin Country</span>
@@ -94,7 +98,8 @@ const AddExport = () => {
                         name="country"
                         placeholder="Enter product's origin"
                         className="input input-bordered w-full"
-                    required
+                        required
+                        defaultValue={product.originCountry}
                     />
                 </div>
 
@@ -108,7 +113,8 @@ const AddExport = () => {
                         name="rating"
                         placeholder="Enter product's rating of 5"
                         className="input input-bordered w-full"
-                    required
+                        required
+                        defaultValue={product.rating}
                     />
                 </div>
 
@@ -122,14 +128,15 @@ const AddExport = () => {
                         name="quantity"
                         placeholder="Enter product's quantity"
                         className="input input-bordered w-full"
-                    required
+                        required
+                        defaultValue={product.availableQuantity}
                     />
                 </div>
 
-                {/* Submit Button */}
+                {/* btn */}
                 <div className="form-control mt-6">
                     <button type="submit" className="btn btn-primary w-full">
-                        Add Export
+                        Update
                     </button>
                 </div>
             </form>
@@ -137,4 +144,4 @@ const AddExport = () => {
     );
 };
 
-export default AddExport;
+export default UpdateExport;
