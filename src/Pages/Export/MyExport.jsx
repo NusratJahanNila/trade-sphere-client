@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
 import { Edit2, Star, Trash2 } from 'lucide-react';
+import Swal from 'sweetalert2';
 // import { toast } from 'react-toastify';
 // import { useNavigate } from 'react-router';
 
@@ -32,7 +33,8 @@ const MyExport = () => {
         setSelectProduct(product);
         document.getElementById('my_modal_3').showModal()
     }
-    console.log('Selected product to update= ', selectProduct);
+    // console.log('Selected product to update= ', selectProduct);
+    // modal submit
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = {
@@ -63,6 +65,45 @@ const MyExport = () => {
             .catch(err => {
                 console.log(err)
             })
+    }
+
+    // delete
+    // delete
+    const handleDelete = (product) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/my-export/${product._id}`, {
+                    method: "DELETE",
+
+                })
+                    .then(res => {
+                        console.log('inside response')
+                        return res.json()
+                    })
+                    .then(data => {
+                        console.log(data)
+                        setRefetch(!refetch);
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        // navigate('/all-models')
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+
+            }
+        });
     }
 
     return (
@@ -112,7 +153,7 @@ const MyExport = () => {
                         </button>
 
                         {/* Delete */}
-                        <button className="flex-1 btn bg-red-500 text-white hover:bg-red-600 rounded-lg py-2">
+                        <button onClick={()=>handleDelete(product)} className="flex-1 btn bg-red-500 text-white hover:bg-red-600 rounded-lg py-2">
                             <Trash2 className="w-4 h-4 mr-1" /> Delete
                         </button>
                     </div>
