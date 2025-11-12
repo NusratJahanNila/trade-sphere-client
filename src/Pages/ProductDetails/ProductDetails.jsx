@@ -9,6 +9,7 @@ const ProductDetails = () => {
     // update
     const [disable, setDisable] = useState(false);
     const [quantity, setQuantity] = useState("");
+    const [refetch, setRefetch] = useState(false);
     // console.log(user)
     // data from useEffect
     const [product, setProduct] = useState({});
@@ -26,7 +27,7 @@ const ProductDetails = () => {
                 setLoading(false)
                 setProduct(data)
             })
-    }, [user, id, setLoading,])
+    }, [user, id, setLoading,refetch])
 
     if (loading) {
         return <p>Loading...</p>
@@ -75,7 +76,7 @@ const ProductDetails = () => {
             importBy:user.email
         }
         // console.log(importData);
-        fetch('http://localhost:3000/imports',{
+        fetch(`http://localhost:3000/imports/${product._id}`,{
                     method: "POST",
                     headers:{
                         'content-type': 'application/json'
@@ -86,6 +87,7 @@ const ProductDetails = () => {
                 .then(data=>{
                     console.log(data)
                     toast.success('Product added successfully')
+                    setRefetch(!refetch);
                     document.getElementById('my_modal_3').close();
                 })
                 .catch(err=>{
