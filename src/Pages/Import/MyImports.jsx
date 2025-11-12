@@ -2,10 +2,12 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
 import { DollarSign, LocateFixed, Package, Trash2, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const MyImports = () => {
     const { user, loading, setLoading } = use(AuthContext);
     const [products, setProducts] = useState([]);
+    const [refetch, setRefetch] = useState(false);
     // api
     useEffect(() => {
         fetch(`http://localhost:3000/my-imports?email=${user.email}`)
@@ -15,13 +17,52 @@ const MyImports = () => {
                 setProducts(data)
                 setLoading(false)
             })
-    }, [user, setLoading])
+    }, [user, setLoading,refetch])
 
     if (loading) {
         return <p>Loading...</p>
     }
 
     console.log('products from import=', products)
+
+
+    // delete
+        const handleRemove = (product) => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:3000/my-imports/${product._id}`, {
+                        method: "DELETE",
+    
+                    })
+                        .then(res => {
+                            console.log('inside response')
+                            return res.json()
+                        })
+                        .then(data => {
+                            console.log(data)
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            setRefetch(!refetch);
+                            // navigate('/all-models')
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+    
+                }
+            });
+        }
 
     return (
         <div className="max-w-11/12 mx-auto my-5">
@@ -32,7 +73,7 @@ const MyImports = () => {
                         <img
                             src={product.productImage}
                             alt={product.productName}
-                            className="rounded-lg object-cover max-h-48 lg:max-h-full w-full"
+                            className="rounded-lg object-cover max-h-48  w-full"
                         />
                     </figure>
 
@@ -70,13 +111,14 @@ const MyImports = () => {
 
                         <div className="card-actions  mt-4">
                             <button
+                                onClick={()=>handleRemove(product)}
                                 className="btn btn-error btn-outline grow lg:grow-0"
                             >
                                 <Trash2 className="w-5 h-5" />
                                 Remove
                             </button>
 
-                            <Link to={`/details/${product._id}`} className="btn btn-warning grow lg:grow-0">
+                            <Link to={`/product-details/${product.productId}`} className="btn btn-warning grow lg:grow-0">
                                 See Details
                             </Link>
                         </div>

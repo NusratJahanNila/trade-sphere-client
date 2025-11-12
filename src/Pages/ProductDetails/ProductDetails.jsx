@@ -63,6 +63,7 @@ const ProductDetails = () => {
         // console.log('the product details=',product);
 
         const importData={
+            productId:product._id,
             productName: product.productName,
             productImage: product.productImage,
             price: product.price,
@@ -101,7 +102,7 @@ const ProductDetails = () => {
                     <img
                         src={productImage}
                         alt={productName}
-                        className="rounded-xl object-cover w-full max-h-[420px]"
+                        className="rounded-xl object-cover w-full max-h-80"
                     />
                 </div>
 

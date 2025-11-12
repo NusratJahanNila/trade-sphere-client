@@ -68,7 +68,6 @@ const MyExport = () => {
     }
 
     // delete
-    // delete
     const handleDelete = (product) => {
         Swal.fire({
             title: "Are you sure?",
