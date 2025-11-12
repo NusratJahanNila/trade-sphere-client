@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import ProductCard from './ProductCard';
+import Loader from '../../Components/Loader/Loader';
 
 const AllProducts = () => {
     const data = useLoaderData();
@@ -22,10 +23,10 @@ const AllProducts = () => {
             		setProducts(data)
             		setLoading(false);
         	})
-    	}
+    }
 
 	if(loading){
-        	return <p>Loading...</p>
+        	return <Loader></Loader>
     	}
     return (
         <div className="">

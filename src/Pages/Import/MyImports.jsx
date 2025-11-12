@@ -3,6 +3,7 @@ import { AuthContext } from '../../Provider/AuthContext';
 import { DollarSign, LocateFixed, Package, Trash2, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import Loader from '../../Components/Loader/Loader';
 
 const MyImports = () => {
     const { user, loading, setLoading } = use(AuthContext);
@@ -25,7 +26,7 @@ const MyImports = () => {
     }, [user, setLoading,refetch])
 
     if (loading) {
-        return <p>Loading...</p>
+        return <Loader></Loader>
     }
 
     console.log('products from import=', products)

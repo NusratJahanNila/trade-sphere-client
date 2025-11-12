@@ -3,6 +3,8 @@ import { FaRegStar } from "react-icons/fa";
 import { useParams } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
 import { toast } from "react-toastify";
+import Loader from "../../Components/Loader/Loader";
+import ProductNotFound from "../ErrorPage/ProductNotFound";
 
 const ProductDetails = () => {
     const { user, } = use(AuthContext);
@@ -34,8 +36,12 @@ const ProductDetails = () => {
             })
     }, [user, id, setLoading,refetch])
 
+    if(!product){
+        return <ProductNotFound></ProductNotFound>
+    }
+
     if (loading) {
-        return <p>Loading...</p>
+        return <Loader></Loader>
     }
     const {
         productImage,

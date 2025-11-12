@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
 import { Edit2, Star, Trash2 } from 'lucide-react';
 import Swal from 'sweetalert2';
+import Loader from '../../Components/Loader/Loader';
 // import { toast } from 'react-toastify';
 // import { useNavigate } from 'react-router';
 
@@ -11,7 +12,7 @@ const MyExport = () => {
     const [selectProduct, setSelectProduct] = useState({})
     const [refetch, setRefetch] = useState(false);
 
-    const { user, loading, setLoading } = use(AuthContext);
+    const { user,  loading,setLoading } = use(AuthContext);
     const [products, setProducts] = useState([]);
     // api
     useEffect(() => {
@@ -30,7 +31,7 @@ const MyExport = () => {
     }, [user, setLoading, refetch])
 
     if (loading) {
-        return <p>Loading...</p>
+        return <Loader></Loader>
     }
 
     // Update
