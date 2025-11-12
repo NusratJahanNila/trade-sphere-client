@@ -3,6 +3,7 @@ import Banner from '../../Components/Header/Banner';
 import Review from '../../Components/Review/Review';
 import { useLoaderData } from 'react-router';
 import ProductCard from '../AllProducts/ProductCard';
+import TopRatedProduct from '../../Components/TopRatedProduct/TopRatedProduct';
 
 const Home = () => {
     const data=useLoaderData();
@@ -20,7 +21,8 @@ const Home = () => {
         </div>
             </div>
             <div className="">
-                <Review></Review>
+                
+                <TopRatedProduct></TopRatedProduct>
             </div>
         </div>
     );
