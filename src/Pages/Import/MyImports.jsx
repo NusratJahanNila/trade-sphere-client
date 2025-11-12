@@ -10,7 +10,12 @@ const MyImports = () => {
     const [refetch, setRefetch] = useState(false);
     // api
     useEffect(() => {
-        fetch(`http://localhost:3000/my-imports?email=${user.email}`)
+        fetch(`http://localhost:3000/my-imports?email=${user.email}`,{
+            headers: {
+                authorization: `Bearer ${user.accessToken}`,
+                'content-type': 'application/json'
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 console.log('after my export', data)

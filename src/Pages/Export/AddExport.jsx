@@ -23,6 +23,7 @@ const AddExport = () => {
         fetch('http://localhost:3000/products',{
             method: "POST",
             headers:{
+                authorization: `Bearer ${user.accessToken}`,
                 'content-type': 'application/json'
             },
             body:JSON.stringify(formData)

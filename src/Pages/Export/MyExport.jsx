@@ -15,7 +15,12 @@ const MyExport = () => {
     const [products, setProducts] = useState([]);
     // api
     useEffect(() => {
-        fetch(`http://localhost:3000/my-export?email=${user.email}`)
+        fetch(`http://localhost:3000/my-export?email=${user.email}`,{
+            headers: {
+                authorization: `Bearer ${user.accessToken}`,
+                'content-type': 'application/json'
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 console.log('after my export', data)
@@ -66,6 +71,7 @@ const MyExport = () => {
                 console.log(err)
             })
     }
+
 
     // delete
     const handleDelete = (product) => {
