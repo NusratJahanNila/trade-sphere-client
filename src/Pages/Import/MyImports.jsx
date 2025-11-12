@@ -72,6 +72,7 @@ const MyImports = () => {
 
     return (
         <div className="max-w-11/12 mx-auto my-5">
+            <title>My Import - Trade Sphere</title>
             {
                 products.map(product => <div className="card lg:card-side bg-base-100 shadow-xl border border-gray-200 w-full mb-6">
 

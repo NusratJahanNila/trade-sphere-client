@@ -30,6 +30,7 @@ const AllProducts = () => {
     	}
     return (
         <div className="">
+            <title> All Products - Trade Sphere</title>
             <h2 className='text-2xl text-center font-bold my-5'>All Products</h2>
             <form onSubmit={handleSearch} className="text-center my-4">
                 <div className="join ">

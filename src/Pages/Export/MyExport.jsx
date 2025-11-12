@@ -114,6 +114,7 @@ const MyExport = () => {
 
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6'>
+            <title>My Export - Trade Sphere</title>
             {
                 products.map(product => <div key={product._id} className="bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col h-[410px] border-gray-200 border">
                     {/* Product Image */}

@@ -9,6 +9,7 @@ const Home = () => {
     const data = useLoaderData();
     return (
         <div>
+            <title>Home - Trade Sphere</title>
             <div className="my-5">
                 <Banner></Banner>
             </div>

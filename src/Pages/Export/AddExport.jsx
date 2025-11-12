@@ -40,6 +40,7 @@ const AddExport = () => {
     }
     return (
         <div className="max-w-md mx-auto bg-base-100 shadow-lg rounded-lg p-6 mt-10">
+            <title>Add Export - Trade Sphere</title>
             <h2 className="text-2xl font-bold text-center mb-6">Add Export</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">

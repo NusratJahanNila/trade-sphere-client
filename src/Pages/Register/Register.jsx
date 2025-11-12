@@ -96,6 +96,7 @@ const Register = () => {
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
+            <title>Register - Trade Sphere</title>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body">
                     <h1 className="text-2xl font-bold text-center text-blue-900">Signup  Here!</h1>
