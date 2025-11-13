@@ -38,7 +38,7 @@ const AddExport = () => {
         })
     }
     return (
-        <div className="max-w-11/12 mx-auto bg-base-100 shadow-lg shadow-gray-300 rounded-lg p-6 my-10 dark:shadow-md dark:shadow-[#e34234]">
+        <div className="max-w-md mx-auto bg-base-100 shadow-lg shadow-gray-300 rounded-lg p-6 my-10 dark:shadow-md dark:shadow-[#e34234]">
             <title>Add Export - Trade Sphere</title>
             <h2 className="text-3xl font-bold text-center mb-6"><span className='text-[#f04a00]'>Add</span> Export</h2>
             
