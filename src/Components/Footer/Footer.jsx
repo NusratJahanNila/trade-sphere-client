@@ -1,9 +1,13 @@
 import React from 'react';
+import { AiOutlineX } from 'react-icons/ai';
+import { BsFacebook } from 'react-icons/bs';
+import { FaInstagram } from 'react-icons/fa';
+import { IoLogoGithub } from 'react-icons/io';
 
 const Footer = () => {
     return (
-        <footer className=" max-w-11/12 mx-auto">
-            <div className="footer sm:footer-horizontal  text-neutral-content p-10">
+        <footer className=" max-w-11/12 mx-auto ">
+            <div className="footer sm:footer-horizontal  text-white p-10">
                 <nav>
                     <h6 className="footer-title">Contact Info</h6>
                     <p>Street:   ullon road, west rampura, rampura, 1219</p>
@@ -22,10 +26,10 @@ const Footer = () => {
 
                 <nav>
                     <h6 className="footer-title">Social</h6>
-                    <a className="link link-hover">X</a>
-                    <a className="link link-hover">Instagram</a>
-                    <a className="link link-hover">Facebook</a>
-                    <a className="link link-hover">GitHub</a>
+                    <a className="link link-hover flex items-center gap-3"><AiOutlineX />X</a>
+                    <a className="link link-hover flex items-center gap-3"><FaInstagram />Instagram</a>
+                    <a className="link link-hover flex items-center gap-3"><BsFacebook />Facebook</a>
+                    <a className="link link-hover flex items-center gap-3"><IoLogoGithub />GitHub</a>
                 </nav>
             </div>
             <aside className='text-center text-white p-4'>

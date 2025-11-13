@@ -46,7 +46,7 @@ const Navbar = () => {
 
     </>
     return (
-        <div className="dark:border-b-2 dark:border-[#f04a00]">
+        <div className="dark:border-b-2 dark:border-[#f04a00] ">
             <div className="navbar  max-w-11/12 mx-auto ">
                 <div className="navbar-start">
                     <div className="dropdown">

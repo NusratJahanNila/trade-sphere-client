@@ -11,12 +11,7 @@ const MyImports = () => {
     const [refetch, setRefetch] = useState(false);
     // api
     useEffect(() => {
-        fetch(`http://localhost:3000/my-imports?email=${user.email}`, {
-            headers: {
-                authorization: `Bearer ${user.accessToken}`,
-                'content-type': 'application/json'
-            }
-        })
+        fetch(`http://localhost:3000/my-imports?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log('after my export', data)
@@ -71,15 +66,17 @@ const MyImports = () => {
     }
 
     return (
-        <div className="">
+        <div className="max-w-11/12 mx-auto">
             <title>My Import - Trade Sphere</title>
-            <h2 className="text-3xl font-bold mb-3  text-center dark:text-white mt-5">
-                My<span className='text-[#f04a00]'> Imports</span> </h2>
-            <p className="text-xl text-gray-600 text-center dark:text-gray-400 max-w-4xl mx-auto mb-5">
-               View all products you’ve imported and their shipment details.
-            </p>
-            <div className="max-w-11/12 mx-auto my-5">
-                
+            <div className="pt-10">
+                <h2 className="text-3xl font-bold mb-3  text-center dark:text-white mt-5">
+                    My<span className='text-[#f04a00]'> Imports</span> </h2>
+                <p className="text-xl text-gray-600 text-center dark:text-gray-400 max-w-4xl mx-auto mb-5">
+                    View all products you've imported and their shipment details.
+                </p>
+            </div>
+            <div className=" my-5">
+
                 {
                     products.map(product => <div className="card lg:card-side bg-base-100 shadow-xl border border-gray-200 w-full mb-6">
 

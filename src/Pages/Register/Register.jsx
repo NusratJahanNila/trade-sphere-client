@@ -95,11 +95,11 @@ const Register = () => {
             });
     }
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="max-w-md mx-auto bg-base-100  rounded-lg p-6 my-10 dark:shadow-md dark:shadow-[#e34234]">
             <title>Register - Trade Sphere</title>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body">
-                    <h1 className="text-2xl font-bold text-center text-blue-900">Signup  Here!</h1>
+                    <h2 className="text-3xl font-bold text-center mb-6"><span className='text-[#f04a00]'>SignUp</span> Here!</h2>
                     <form onSubmit={handleRegister}>
                         <fieldset className="fieldset">
                             {/* Name */}
@@ -146,14 +146,14 @@ const Register = () => {
                             {
                                 error && <p className='text-red-600 text-sm'>{error}</p>
                             }
-                            <button className="bg-blue-900 text-white  font-semibold hover:bg-blue-800 btn">Signup</button>
+                            <button className="btn rounded-xl text-white bg-[#f04a00] hover:bg-[#e34234]">Sign Up </button>
                         </fieldset>
                     </form>
-                    <button onClick={handleGoogleSignIn} className="btn bg-white text-black border-[#e5e5e5] hover:shadow-sm">
+                    <button onClick={handleGoogleSignIn} className="btn rounded-xl btn-outline bg-white border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00] hover:shadow-sm">
                         <FcGoogle />
                         Login with Google
                     </button>
-                    <p className='text-center'>Already have an account? <Link to='/auth/login' className='text-blue-900 hover:underline font-semibold'>Login</Link></p>
+                    <p className='text-center'>Already have an account? <Link to='/auth/login' className='text-[#e34324] hover:underline font-semibold'>Login</Link></p>
                 </div>
             </div>
         </div>

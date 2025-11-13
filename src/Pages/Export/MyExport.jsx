@@ -113,14 +113,16 @@ const MyExport = () => {
     }
 
     return (
-        <div className="">
+        <div className="max-w-11/12 mx-auto">
             <title>My Export - Trade Sphere</title>
-            <h2 className="text-3xl font-bold mb-3  text-center dark:text-white mt-5">
-                My<span className='text-[#f04a00]'> Export</span> </h2>
-            <p className="text-xl text-gray-600 text-center dark:text-gray-400 max-w-4xl mx-auto mb-5">
-                Manage and track the products you've listed for export.
-            </p>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-11/12 mx-auto my-10'>
+            <div className="pt-10">
+                <h2 className="text-3xl font-bold mb-3  text-center dark:text-white mt-5">
+                    My<span className='text-[#f04a00]'> Export</span> </h2>
+                <p className="text-xl text-gray-600 text-center dark:text-gray-400 max-w-4xl mx-auto mb-5">
+                    Manage and track the products you've listed for export.
+                </p>
+            </div>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  my-10'>
 
                 {
                     products.map(product => <div key={product._id} className=" rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col h-[410px] border-gray-200 border">

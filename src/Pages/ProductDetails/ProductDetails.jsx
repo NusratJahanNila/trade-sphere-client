@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import { FaRegStar } from "react-icons/fa";
+import { DollarSign, LocateFixed, Package,TrendingUp } from 'lucide-react';
 import { useParams } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
 import { toast } from "react-toastify";
@@ -14,7 +14,7 @@ const ProductDetails = () => {
     const [refetch, setRefetch] = useState(false);
     // console.log(user)
     // data from useEffect
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true)
 
     const { id } = useParams();
@@ -30,15 +30,28 @@ const ProductDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // console.log('after token verify', data)
+                console.log('after token verify', data)
+                if(data.message=='Invalid product ID format. Must be a 24-character hex string.'){
+                    setLoading(false)
+                    setProduct(null)
+                    return;
+                }
                 setLoading(false)
                 setProduct(data)
+
+            })
+            .catch(err=>{
+                console.log(err)
+                setLoading(false)
+                setProduct(null)
             })
     }, [user, id, setLoading,refetch])
 
     if(!product){
+        console.log(product)
         return <ProductNotFound></ProductNotFound>
     }
+    
 
     if (loading) {
         return <Loader></Loader>
@@ -108,7 +121,7 @@ const ProductDetails = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-8">
+        <div className="min-h-screen  py-12 px-4 sm:px-8">
             <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
 
                 <div className="flex items-center justify-center bg-gray-100 p-6">
@@ -121,31 +134,38 @@ const ProductDetails = () => {
 
                 <div className="p-8 flex flex-col justify-between">
                     <div>
-                        <h2 className="text-2xl font-semibold text-gray-800 mb-3">
-                            {product.productName}
-                        </h2>
+                        <div>
+                                <h2 className="  text-xl font-bold dark:text-black mr-4 mb-2">
+                                    {productName}
+                                </h2>
+                                <div className="badge badge-primary badge-outline text-xs p-3">
+                                    <LocateFixed className="w-3 h-3 mr-1" />
+                                    {originCountry}
+                                </div>
+                            </div>
 
-                        <div className="flex items-center justify-between mb-4">
-                            <span className="text-gray-600 text-sm">
-                                Origin: <span className="font-medium">{originCountry}</span>
-                            </span>
-                            <span className="flex items-center gap-1 text-yellow-500">
-                                <FaRegStar className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                                <span className="text-gray-700 font-medium">{rating}</span>
-                            </span>
-                        </div>
+                            <div className="grid grid-cols-3 gap-3 my-3 border-y py-3 border-gray-100">
 
-                        <div className="mb-4 text-gray-700">
-                            <p className="text-lg font-semibold text-primary">
-                                Price: {price} BDT
-                            </p>
-                            <p className="text-sm mt-1">
-                                Available Quantity:
-                                <span className="font-medium">{availableQuantity}</span>
-                            </p>
-                        </div>
+                                <div className="flex flex-col ">
+                                    <DollarSign className="w-5 h-5 text-green-600" />
+                                    <span className="text-xs text-gray-500">Price</span>
+                                    <p className="font-semibold text-lg text-green-600">${price}</p>
+                                </div>
 
-                        <div className="text-sm text-gray-600 mb-6">
+                                <div className="flex flex-col ">
+                                    <TrendingUp className="w-5 h-5 text-yellow-500" />
+                                    <span className="text-xs text-gray-500">Rating</span>
+                                    <p className="ml-1 font-semibold text-lg text-yellow-500">{rating}</p>
+                                </div>
+
+                                <div className="flex flex-col ">
+                                    <Package className="w-5 h-5 text-blue-500" />
+                                    <span className="text-xs text-gray-500">Quantity</span>
+                                    <p className="font-semibold text-lg dark:text-blue-500">{availableQuantity}</p>
+                                </div>
+                            </div>
+
+                        <div className="text-sm text-gray-600 bg-gray-200 p-5 rounded-2xl space-y-2 mb-6">
                             <p>
                                 Exported By: <span className="font-medium">{exportBy}</span>
                             </p>
@@ -160,7 +180,7 @@ const ProductDetails = () => {
 
                     {/* Import Button */}
 
-                    <button className="btn btn-primary" onClick={() => document.getElementById('my_modal_3').showModal()}>Import Now</button>
+                    <button className="btn rounded-xl text-white bg-[#f04a00] hover:bg-[#e34234] border-0" onClick={() => document.getElementById('my_modal_3').showModal()}>Import Now</button>
                     <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
                             <form method="dialog">
@@ -180,7 +200,7 @@ const ProductDetails = () => {
                                     <button
                                         type="submit"
                                         disabled={disable}
-                                        className={`btn btn-primary mt-4 ${disable ? "opacity-50 cursor-not-allowed" : ""
+                                        className={`btn rounded-xl text-white bg-[#f04a00] hover:bg-[#e34234] border-0 mt-4 ${disable ? "opacity-50 cursor-not-allowed" : ""
                                             }`}
                                     >
                                         Submit

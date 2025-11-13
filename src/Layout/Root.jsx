@@ -13,7 +13,7 @@ const Root = () => {
             <div className="min-h-[72vh]">
                 <Outlet></Outlet>
             </div>
-            <div className="bg-neutral">
+            <div className="bg-[#e34234]">
                 <Footer></Footer>
             </div>
             <ToastContainer></ToastContainer>

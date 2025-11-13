@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 const TradeInfo = () => {
     return (
-        <div className="py-20 px-4 max-w-11/12 mx-auto">
+        <div className="py-10 px-4 max-w-11/12 mx-auto">
             <div className="max-w-7xl mx-auto text-center">
                 <h2 className="text-3xl font-bold mb-3  dark:text-white">
                     Trade<span className='text-[#f04a00]'>Sphere</span> : Global Trade By The Numbers

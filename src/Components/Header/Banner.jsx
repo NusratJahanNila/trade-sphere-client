@@ -35,7 +35,7 @@ const Banner = () => {
               <h2 className="text-2xl lg:text-3xl font-bold mb-3 leading-tight">Global Sourcing, Simplified.</h2>
               <p className="text-xl mb-6">Browse millions of products and import to your Hub with a single click.</p>
 
-              <Link to='/all-products' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00]">Start Importing</Link>
+              <Link to='/all-products' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00] rounded-xl">Start Importing</Link>
             </div>
 
             <div className="md:order-2 order-1 flex justify-center items-center">
@@ -59,7 +59,7 @@ const Banner = () => {
               <h2 className="text-2xl lg:text-3xl font-bold mb-3 leading-tight">Manage Your Exports in Real-Time.</h2>
               <p className="text-xl  mb-6">Securely track, update, and manage all your shipments from one unified dashboard.</p>
 
-              <Link to='/my-exports' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00]">Manage Exports</Link>
+              <Link to='/my-export' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00] rounded-xl">Manage Exports</Link>
             </div>
 
             <div className="md:order-2 order-1 flex justify-center items-center">
@@ -83,7 +83,7 @@ const Banner = () => {
               <h2 className="text-2xl lg:text-3xl font-bold  mb-3 leading-tight">Secure Trade. Instant Sync.</h2>
               <p className="text-xl mb-6">Experience enterprise-grade security and real-time data synchronization across all devices.</p>
 
-              <Link to='/auth/login' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00]">Join The Hub</Link>
+              <Link to='/auth/login' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00] rounded-xl">Join The Hub</Link>
             </div>
 
             <div className="md:order-2 order-1 flex justify-center items-center">
