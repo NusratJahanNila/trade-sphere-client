@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Star } from "lucide-react";
+import { Star, TrendingUp } from "lucide-react";
 
 const TopRatedProduct = () => {
   const [topProducts, setTopProducts] = useState([]);
@@ -14,14 +14,12 @@ const TopRatedProduct = () => {
   }, []);
 
   return (
-    <section className="bg-gray-50 py-14 px-6 lg:px-16">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    <section className="my-10">
+      <div className="max-w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center dark:shadow-md dark:shadow-[#e34234] shadow-lg shadow-gray-300 rounded-xl p-8 ">
 
         <div className="space-y-4 text-center lg:text-left">
-          <h2 className="text-3xl font-bold text-gray-800">
-            🌟 Top Rated Products
-          </h2>
-          <p className="text-gray-600 leading-relaxed max-w-md mx-auto lg:mx-0">
+          <h2 className="text-3xl font-bold flex gap-2 items-center"><TrendingUp className="text-[#f04a00] w-8 h-10"/> <span className="text-[#f04a00]">Top Rated</span> Products</h2>
+          <p className="leading-relaxed max-w-md mx-auto lg:mx-0">
             Explore the most highly rated exports from our trusted exporters
             around the world. Quality products that meet international trade
             standards.

@@ -9,7 +9,7 @@ const Banner = () => {
   return (
     <div className="w-11/12 mx-auto p-10 rounded-lg ">
       <h2 className="text-3xl font-bold text-center mb-6">
-        Your Global Trade <span className="text-blue-900">Partner</span>
+        Your Global Trade <span className="text-[#f04a00]">Partner</span>
       </h2>
 
       <Swiper
@@ -32,10 +32,10 @@ const Banner = () => {
             className='rounded-2xl overflow-hidden shadow-2xl p-6 bg-blue-500/10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[350px]' >
 
             <div className="md:order-1 order-2 p-4">
-              <h2 className="text-2xl lg:text-5xl font-extrabold text-gray-900 mb-3 leading-tight">Global Sourcing, Simplified.</h2>
-              <p className="text-xl text-gray-700 mb-6">Browse millions of products and import to your Hub with a single click.</p>
+              <h2 className="text-2xl lg:text-3xl font-bold mb-3 leading-tight">Global Sourcing, Simplified.</h2>
+              <p className="text-xl mb-6">Browse millions of products and import to your Hub with a single click.</p>
 
-              <Link to='/all-products' className="btn btn-primary btn-lg shadow-xl hover:shadow-none transition-all duration-300">Start Importing</Link>
+              <Link to='/all-products' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00]">Start Importing</Link>
             </div>
 
             <div className="md:order-2 order-1 flex justify-center items-center">
@@ -56,10 +56,10 @@ const Banner = () => {
             className='rounded-2xl overflow-hidden shadow-2xl p-6 bg-green-500/10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[350px]' >
 
             <div className="md:order-1 order-2 p-4">
-              <h2 className="text-2xl lg:text-5xl font-extrabold text-gray-900 mb-3 leading-tight">Manage Your Exports in Real-Time.</h2>
-              <p className="text-xl text-gray-700 mb-6">Securely track, update, and manage all your shipments from one unified dashboard.</p>
+              <h2 className="text-2xl lg:text-3xl font-bold mb-3 leading-tight">Manage Your Exports in Real-Time.</h2>
+              <p className="text-xl  mb-6">Securely track, update, and manage all your shipments from one unified dashboard.</p>
 
-              <Link to='/my-exports' className="btn btn-primary btn-lg shadow-xl hover:shadow-none transition-all duration-300">Manage Exports</Link>
+              <Link to='/my-exports' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00]">Manage Exports</Link>
             </div>
 
             <div className="md:order-2 order-1 flex justify-center items-center">
@@ -80,10 +80,10 @@ const Banner = () => {
             className='rounded-2xl overflow-hidden shadow-2xl p-6 bg-purple-500/10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[350px]' >
 
             <div className="md:order-1 order-2 p-4">
-              <h2 className="text-2xl lg:text-5xl font-extrabold text-gray-900 mb-3 leading-tight">Secure Trade. Instant Sync.</h2>
-              <p className="text-xl text-gray-700 mb-6">Experience enterprise-grade security and real-time data synchronization across all devices.</p>
+              <h2 className="text-2xl lg:text-3xl font-bold  mb-3 leading-tight">Secure Trade. Instant Sync.</h2>
+              <p className="text-xl mb-6">Experience enterprise-grade security and real-time data synchronization across all devices.</p>
 
-              <Link to='/auth/login' className="btn btn-primary btn-lg shadow-xl hover:shadow-none transition-all duration-300">Join The Hub</Link>
+              <Link to='/auth/login' className="btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00]">Join The Hub</Link>
             </div>
 
             <div className="md:order-2 order-1 flex justify-center items-center">

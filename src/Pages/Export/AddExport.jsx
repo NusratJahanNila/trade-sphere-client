@@ -39,10 +39,10 @@ const AddExport = () => {
         })
     }
     return (
-        <div className="max-w-md mx-auto bg-base-100 shadow-lg rounded-lg p-6 mt-10">
+        <div className="max-w-md mx-auto bg-base-100 shadow-lg shadow-gray-300 rounded-lg p-6 my-10 dark:shadow-md dark:shadow-[#e34234]">
             <title>Add Export - Trade Sphere</title>
-            <h2 className="text-2xl font-bold text-center mb-6">Add Export</h2>
-
+            <h2 className="text-3xl font-bold text-center mb-6"><span className='text-[#f04a00]'>Add</span> Export</h2>
+            
             <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Name */}
                 <div className="form-control">
@@ -130,7 +130,7 @@ const AddExport = () => {
 
                 {/* Submit Button */}
                 <div className="form-control mt-6">
-                    <button type="submit" className="btn btn-primary w-full">
+                    <button type="submit" className="btn  text-white bg-[#f04a00] hover:bg-[#e34234] rounded-xl w-full">
                         Add Export
                     </button>
                 </div>
