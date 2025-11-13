@@ -3,8 +3,8 @@ import { FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { IoMdEye } from 'react-icons/io';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router';
-import toast from 'react-hot-toast';
 import { AuthContext } from '../../Provider/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     // Show Password
@@ -37,7 +37,8 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Logged in Successfully!!')
-                navigate(`${location.state? location.state : '/'}`);
+                navigate(location.state || "/", { replace: true });
+
             })
             .catch((err) => {
                 const errorCode = err.code;

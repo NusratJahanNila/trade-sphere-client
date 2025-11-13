@@ -1,10 +1,10 @@
 import React, { use, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, Navigate, useNavigate } from 'react-router';
-import toast from 'react-hot-toast';
 import { IoMdEye } from 'react-icons/io';
 import { FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../../Provider/AuthContext';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     // Navigate to home page
