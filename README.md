@@ -1,7 +1,6 @@
 Website Name: Trade Sphere
 -----------------
 Description:
-
 Trade Sphere is a full-stack web application designed to simplify international trade operations by providing exporters and importers with a digital platform to manage, list, and track global trade products efficiently.
 It offers a secure, user-friendly interface where users can explore the latest export-ready products, manage their own exports, and monitor imported goods — all in one place.
 -------
@@ -33,12 +32,11 @@ MongoDB Atlas and Express.js handle CRUD operations for products, imports, and e
 Tools:
 
 Frontend: React, React Router, Tailwind CSS, Lucide Icons, DaisyUI,Firebase Auth
-
 Backend: Node.js, Express.js, MongoDB Atlas
 -----
 
-Live Links:
+Live Links: https://trade-sphere-f6ed8.web.app/
 
-Client Side:  
+Client Side:  https://github.com/NusratJahanNila/trade-sphere-client.git
 
-Server Side: 
+Server Side: https://github.com/NusratJahanNila/trade-sphere-server.git

@@ -1,6 +1,6 @@
 import React, { use, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, Navigate, useNavigate } from 'react-router';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router';
 import { IoMdEye } from 'react-icons/io';
 import { FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../../Provider/AuthContext';
@@ -8,16 +8,18 @@ import { toast } from 'react-toastify';
 
 const Register = () => {
     // Navigate to home page
+    // Navigate to home page
     const navigate = useNavigate();
-    // console.log(navigate)
+    const location=useLocation();
+    console.log(location.state);
     // Show Password
     const [showPassword, setShowPassword] = useState(false);
     // Error for password validation
     const [error, setError] = useState('')
     // AuthContext
-    const {user, createUser, setUser, googleSignIn ,updateUser} = use(AuthContext);
-    if(user){
-        return <Navigate to='/'></Navigate>
+    const { user, createUser, setUser, googleSignIn, updateUser } = use(AuthContext);
+    if (user) {
+        return <Navigate to={location.state ? location.state : "/"}></Navigate>
     }
 
     const handleRegister = (e) => {
@@ -62,7 +64,7 @@ const Register = () => {
                         setUser(user);
                     });
                 toast.success('User Registration Successfull!!')
-                navigate('/');
+                navigate(`${location.state? location.state :"/"}`);
             })
             .catch((err) => {
                 const errorCode = err.code;
