@@ -5,7 +5,7 @@ const TopRatedProduct = () => {
   const [topProducts, setTopProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/top-rated-products")
+    fetch("https://trade-sphere-server.vercel.app/top-rated-products")
       .then((res) => res.json())
       .then((data) => {
         setTopProducts(data)

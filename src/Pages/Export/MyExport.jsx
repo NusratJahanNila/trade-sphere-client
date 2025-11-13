@@ -16,7 +16,7 @@ const MyExport = () => {
     const [products, setProducts] = useState([]);
     // api
     useEffect(() => {
-        fetch(`http://localhost:3000/my-export?email=${user.email}`, {
+        fetch(`https://trade-sphere-server.vercel.app/my-export?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 'content-type': 'application/json'
@@ -51,7 +51,7 @@ const MyExport = () => {
             rating: e.target.rating.value,
             availableQuantity: e.target.quantity.value,
         }
-        fetch(`http://localhost:3000/my-export/${selectProduct._id}`, {
+        fetch(`https://trade-sphere-server.vercel.app/my-export/${selectProduct._id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -86,7 +86,7 @@ const MyExport = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/my-export/${product._id}`, {
+                fetch(`https://trade-sphere-server.vercel.app/my-export/${product._id}`, {
                     method: "DELETE",
 
                 })

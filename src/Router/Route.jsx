@@ -23,13 +23,13 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:3000/latest-products'),
+        loader: () => fetch('https://trade-sphere-server.vercel.app/latest-products'),
         hydrateFallbackElement:<Loader></Loader>
       },
       {
         path: '/all-products',
         element: <AllProducts></AllProducts>,
-        loader: () => fetch('http://localhost:3000/products'),
+        loader: () => fetch('https://trade-sphere-server.vercel.app/products'),
         hydrateFallbackElement:<Loader></Loader>
       },
       {

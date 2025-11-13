@@ -11,7 +11,7 @@ const MyImports = () => {
     const [refetch, setRefetch] = useState(false);
     // api
     useEffect(() => {
-        fetch(`http://localhost:3000/my-imports?email=${user.email}`)
+        fetch(`https://trade-sphere-server.vercel.app/my-imports?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log('after my export', data)
@@ -39,7 +39,7 @@ const MyImports = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/my-imports/${product._id}`, {
+                fetch(`https://trade-sphere-server.vercel.app/my-imports/${product._id}`, {
                     method: "DELETE",
 
                 })
@@ -75,10 +75,10 @@ const MyImports = () => {
                     View all products you've imported and their shipment details.
                 </p>
             </div>
-            <div className=" my-5">
+            <div className=" my-10">
 
                 {
-                    products.map(product => <div className="card lg:card-side bg-base-100 shadow-xl border border-gray-200 w-full mb-6">
+                    products.map(product => <div className="card lg:card-side bg-base-200 shadow-xl border border-gray-300 w-full mb-6">
 
                         <figure className="lg:w-1/3 w-full p-4 bg-gray-50 flex items-center justify-center">
                             <img
@@ -99,7 +99,7 @@ const MyImports = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-3 my-3 border-y py-3 border-gray-100">
+                            <div className="grid grid-cols-3 gap-3 my-3 border-y py-3 border-gray-300">
 
                                 <div className="flex flex-col ">
                                     <DollarSign className="w-5 h-5 text-green-600" />

@@ -16,7 +16,7 @@ const AllProducts = () => {
         console.log(searchItem)
         // loading
         setLoading(true)
-        fetch(`http://localhost:3000/search?search=${searchItem}`)
+        fetch(`https://trade-sphere-server.vercel.app/search?search=${searchItem}`)
             .then(res => res.json())
             .then(data => {
                 console.log('after search', data)
@@ -45,7 +45,7 @@ const AllProducts = () => {
                             <input
                                 name='search'
                                 type="text"
-                                className='w-70'
+                                className='md:w-70'
                                 placeholder='Search Products' />
                         </label>
                     </div>

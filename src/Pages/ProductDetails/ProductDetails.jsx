@@ -22,7 +22,7 @@ const ProductDetails = () => {
 
     // API call from server
     useEffect(() => {
-        fetch(`http://localhost:3000/products/${id}`,{
+        fetch(`https://trade-sphere-server.vercel.app/products/${id}`,{
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 'content-type': 'application/json'
@@ -100,7 +100,7 @@ const ProductDetails = () => {
             importBy:user.email
         }
         // console.log(importData);
-        fetch(`http://localhost:3000/imports/${product._id}`,{
+        fetch(`https://trade-sphere-server.vercel.app/imports/${product._id}`,{
                     method: "POST",
                     headers:{
                         'content-type': 'application/json'

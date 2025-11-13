@@ -14,14 +14,14 @@ const Login = () => {
     // Navigate to home page
     const navigate = useNavigate();
     const location=useLocation();
-    // console.log(location);
+    console.log(location.state);
 
     
 
     // AuthContext
     const {user, setUser, googleSignIn, loginWithEmailPassword} = use(AuthContext);
     if(user){
-        return <Navigate to='/'></Navigate>
+        return <Navigate to={location.state? location.state :"/"}></Navigate>
     }
     // Login
     const handleLogin=(e)=>{
@@ -37,7 +37,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Logged in Successfully!!')
-                navigate(location.state || "/", { replace: true });
+                navigate(`${location.state? location.state :"/"}`);
 
             })
             .catch((err) => {
