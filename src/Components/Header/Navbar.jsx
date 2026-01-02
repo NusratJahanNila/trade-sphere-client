@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../Provider/AuthContext';
 import { use, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { House, LayoutDashboard, LogOut, Package, PackagePlus, ShoppingCart, Truck, User } from 'lucide-react';
+import { CircleQuestionMark, House, LayoutDashboard, LogOut, Package, PackagePlus, Phone, ScrollText, ShoppingCart, Truck, User } from 'lucide-react';
 // import { toast } from 'react-toastify';
 
 const Navbar = () => {
@@ -54,6 +54,10 @@ const Navbar = () => {
         <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/add-export'><PackagePlus />Add Export</NavLink></li>
       </>
     }
+    <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/about'><ScrollText />About</NavLink></li>
+    {/* <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/contact'><Phone />Contact</NavLink></li>
+    <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/terms'><CircleQuestionMark />Terms</NavLink></li> */}
+
 
   </>
   return (

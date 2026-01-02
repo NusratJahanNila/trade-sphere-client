@@ -86,7 +86,7 @@ const FAQ = () => {
         </div>
 
         {/* Contact Support */}
-        <div className="mt-10 sm:mt-12 text-center p-5 sm:p-6 bg-gradient-to-r from-orange-50 to-red-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl border border-orange-200 dark:border-gray-700">
+        <div className="mt-10 sm:mt-12 text-center p-5 sm:p-6 bg-linear-to-r from-orange-50 to-red-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl border border-orange-200 dark:border-gray-700">
           <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">
             Still have questions?
           </h3>

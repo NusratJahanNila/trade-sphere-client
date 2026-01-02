@@ -68,8 +68,8 @@ const HowItWorks = () => {
               {/* Connector line between steps (hidden on mobile) */}
               {index < steps.length - 1 && (
                 <>
-                  <div className="hidden lg:block absolute top-10 right-0 w-full h-0.5 bg-gradient-to-r from-[#f04a00] to-transparent transform translate-x-1/2"></div>
-                  <div className="hidden sm:block lg:hidden absolute top-10 right-0 w-0.5 h-full bg-gradient-to-b from-[#f04a00] to-transparent transform translate-x-1/2"></div>
+                  <div className="hidden lg:block absolute top-10 right-0 w-full h-0.5 bg-linear-to-r from-[#f04a00] to-transparent transform translate-x-1/2"></div>
+                  <div className="hidden sm:block lg:hidden absolute top-10 right-0 w-0.5 h-full bg-linear-to-b from-[#f04a00] to-transparent transform translate-x-1/2"></div>
                 </>
               )}
             </div>

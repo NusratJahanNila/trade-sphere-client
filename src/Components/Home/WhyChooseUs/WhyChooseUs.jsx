@@ -42,7 +42,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section className="py-12 md:py-16 lg:py-20 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 lg:mb-14">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -60,10 +60,10 @@ const WhyChooseUs = () => {
               className="group relative bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-7 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-800 hover:border-[#f04a00]/30"
             >
               {/* Background Gradient Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
+              <div className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
               
               {/* Icon with gradient background */}
-              <div className={`mb-5 w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`mb-5 w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-linear-to-br ${feature.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                 <div className="text-white">
                   {feature.icon}
                 </div>
@@ -77,7 +77,7 @@ const WhyChooseUs = () => {
               </p>
 
               {/* Hover indicator */}
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-[#f04a00] to-orange-400 group-hover:w-20 transition-all duration-300 rounded-t-full"></div>
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-linear-to-r from-[#f04a00] to-orange-400 group-hover:w-20 transition-all duration-300 rounded-t-full"></div>
             </div>
           ))}
         </div>
