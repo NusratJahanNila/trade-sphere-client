@@ -1,6 +1,7 @@
 // components/FAQ.jsx
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Link } from 'react-router';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -93,12 +94,12 @@ const FAQ = () => {
           <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-4">
             Our trade experts are available 24/7 to help you
           </p>
-          <button className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-[#f04a00] text-white font-medium rounded-lg hover:bg-[#e34234] transition-colors text-sm sm:text-base">
+          <Link to={"/contact"} className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-[#f04a00] text-white font-medium rounded-lg hover:bg-[#e34234] transition-colors text-sm sm:text-base">
             Contact Support
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

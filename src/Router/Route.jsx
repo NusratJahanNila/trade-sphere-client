@@ -15,6 +15,7 @@ import Error404 from "../Pages/ErrorPage/Error404";
 import ProductNotFound from "../Pages/ErrorPage/ProductNotFound";
 import About from "../Pages/About/About";
 import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
+import Contact from "../Pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element:<About></About>
+      },
+      {
+        path: "/contact",
+        element:<Contact/>
       },
       {
         path: "/terms",

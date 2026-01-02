@@ -74,7 +74,7 @@ const Testimonials = () => {
     ];
 
     return (
-        <section className="py-12 md:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900">
+        <section className="py-12 md:py-16 lg:py-20  dark:bg-gray-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-10 lg:mb-14">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -90,7 +90,7 @@ const Testimonials = () => {
                         modules={[Autoplay, Pagination]}
                         spaceBetween={20}
                         slidesPerView={1}
-                        autoplay={{ delay: 5000, disableOnInteraction: false }}
+                        autoplay={{ delay: 3000, disableOnInteraction: false }}
                         pagination={{ clickable: true }}
                         breakpoints={{
                             640: { slidesPerView: 1 },
@@ -150,27 +150,7 @@ const Testimonials = () => {
                     </Swiper>
                 </div>
 
-                {/* Trust Badges */}
-                <div className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-                    {[
-                        { label: "Secure Platform", value: "A+" },
-                        { label: "Customer Support", value: "24/7" },
-                        { label: "Success Rate", value: "98%" },
-                        { label: "Years Experience", value: "5+" }
-                    ].map((badge, index) => (
-                        <div
-                            key={index}
-                            className="bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 text-center border border-gray-200 dark:border-gray-700"
-                        >
-                            <div className="text-2xl sm:text-3xl font-bold text-[#f04a00] mb-1">
-                                {badge.value}
-                            </div>
-                            <div className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
-                                {badge.label}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+               
             </div>
         </section>
     );
