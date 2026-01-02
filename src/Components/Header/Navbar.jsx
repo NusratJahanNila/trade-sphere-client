@@ -49,14 +49,14 @@ const Navbar = () => {
 
     {
       user && <>
-        <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/my-export'><Truck />My Export</NavLink></li>
-        <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/my-imports'><ShoppingCart />My Import</NavLink></li>
+        {/* <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/my-export'><Truck />My Export</NavLink></li>
+        <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/my-imports'><ShoppingCart />My Import</NavLink></li> */}
         <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/add-export'><PackagePlus />Add Export</NavLink></li>
       </>
     }
     <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/about'><ScrollText />About</NavLink></li>
     <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/contact'><Phone />Contact</NavLink></li>
-    <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/terms'><CircleQuestionMark />Terms</NavLink></li>
+    <li className='text-md font-semibold'><NavLink className={({ isActive }) => isActive && 'underline text-[#f04a00]'} to='/terms'><CircleQuestionMark />Terms and Condition</NavLink></li>
 
 
   </>

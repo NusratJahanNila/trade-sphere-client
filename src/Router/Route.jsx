@@ -16,6 +16,8 @@ import ProductNotFound from "../Pages/ErrorPage/ProductNotFound";
 import About from "../Pages/About/About";
 import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 import Contact from "../Pages/Contact/Contact";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -42,21 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/add-export',
-        element: <PrivateRoute>
-          <AddExport></AddExport>
-        </PrivateRoute>
-      },
-      {
-        path: '/my-export',
-        element: <PrivateRoute>
-          <MyExport />
-        </PrivateRoute>
-      },
-      {
-        path: '/my-imports',
-        element: <PrivateRoute>
-          <MyImports></MyImports>
-        </PrivateRoute>
+        element: <AddExport></AddExport>
       },
       {
         path: "/about",
@@ -73,6 +61,28 @@ const router = createBrowserRouter([
 
     ]
   },
+  // Dashboard
+  {
+    path: "/dashboard",
+    element: <PrivateRoute>
+      <DashboardLayout></DashboardLayout>
+    </PrivateRoute>,
+    children:[
+      {
+        path: "/dashboard",
+        element:<Dashboard></Dashboard>
+      },
+      {
+        path: '/dashboard/my-export',
+        element: <MyExport />
+      },
+      {
+        path: '/dashboard/my-imports',
+        element:<MyImports></MyImports>
+      },
+    ]
+  },
+  // Auth
   {
     path: '/auth',
     element: <AuthLayout></AuthLayout>,
