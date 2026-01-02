@@ -22,12 +22,7 @@ const ProductDetails = () => {
 
     // API call from server
     useEffect(() => {
-        fetch(`https://trade-sphere-server.vercel.app/products/${id}`,{
-            headers: {
-                authorization: `Bearer ${user.accessToken}`,
-                'content-type': 'application/json'
-            }
-        })
+        fetch(`https://trade-sphere-server.vercel.app/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log('after token verify', data)
@@ -121,8 +116,8 @@ const ProductDetails = () => {
     };
 
     return (
-        <div className="min-h-screen  py-12 px-4 sm:px-8">
-            <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
+        <div className="min-h-screen  py-12 px-4 sm:px-8 mt-16 ">
+            <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
 
                 <div className="flex items-center justify-center bg-gray-100 p-6">
                     <img
