@@ -34,8 +34,7 @@ const Navbar = () => {
 
 
   // Logout
-  const handleLogout = (e) => {
-    e.preventDefault();
+  const handleLogout = () => {
     logout()
       .then(() => {
         toast.success('Logged out successfully!!')

@@ -12,7 +12,7 @@ const AuthLayout = () => {
             <div className="min-h-[72vh] pt-16 bg-base-200">
                 <Outlet></Outlet>
             </div>
-            <div className="bg-neutral">
+            <div className="bg-[#f04a00]">
                 <Footer></Footer>
             </div>
         </div>
