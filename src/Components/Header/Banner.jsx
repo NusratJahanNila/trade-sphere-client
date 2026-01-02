@@ -28,7 +28,7 @@ const Banner = () => {
         }}
       >
         <SwiperSlide>
-          <div className='rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl p-4 sm:p-6 bg-blue-500/10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center min-h-[280px] sm:min-h-[320px] md:min-h-[350px]'>
+          <div className='rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl p-4 sm:p-6 bg-blue-500/10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center min-h-[280px] sm:min-h-80 md:min-h-[350px]'>
             <div className="md:order-1 order-2 p-2 sm:p-4">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 leading-tight">
                 Global Sourcing, Simplified.
@@ -55,7 +55,7 @@ const Banner = () => {
         </SwiperSlide>
 
         <SwiperSlide>
-          <div className='rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl p-4 sm:p-6 bg-green-500/10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center min-h-[280px] sm:min-h-[320px] md:min-h-[350px]'>
+          <div className='rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl p-4 sm:p-6 bg-green-500/10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center min-h-[280px] sm:min-h-80 md:min-h-[350px]'>
             <div className="md:order-1 order-2 p-2 sm:p-4">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 leading-tight">
                 Manage Your Exports in Real-Time.
@@ -82,7 +82,7 @@ const Banner = () => {
         </SwiperSlide>
 
         <SwiperSlide>
-          <div className='rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl p-4 sm:p-6 bg-purple-500/10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center min-h-[280px] sm:min-h-[320px] md:min-h-[350px]'>
+          <div className='rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl p-4 sm:p-6 bg-purple-500/10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center min-h-[280px] sm:min-h-80 md:min-h-[350px]'>
             <div className="md:order-1 order-2 p-2 sm:p-4">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 leading-tight">
                 Secure Trade. Instant Sync.
