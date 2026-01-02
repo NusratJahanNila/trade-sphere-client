@@ -1,4 +1,3 @@
-// components/About.jsx
 const About = () => {
   return (
     <section className="py-12 md:py-16 bg-base-100 mt-10">
