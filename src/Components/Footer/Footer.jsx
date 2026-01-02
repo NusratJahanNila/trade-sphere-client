@@ -6,7 +6,7 @@ import { IoLogoGithub } from 'react-icons/io';
 
 const Footer = () => {
     return (
-        <footer className=" max-w-11/12 mx-auto ">
+        <footer className=" max-w-7xl mx-auto">
             <div className="footer sm:footer-horizontal  text-white p-10">
                 <nav>
                     <h6 className="footer-title">Contact Info</h6>

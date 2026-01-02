@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
   const { _id, productName, productImage, price, originCountry, rating, availableQuantity, } = product;
 
   return (
-    <div className="overflow-hidden flex flex-col justify-between  h-[430px] border-2 border-gray-100 dark:border-gray-700 rounded-xl shadow-lg transition duration-300 hover:shadow-2xl  hover:border-[#f04a00] dark:hover:border-[#f04a00] ">
+    <div className="bg-white dark:bg-gray-800 overflow-hidden flex flex-col justify-between  h-[430px] border-2 border-gray-100 dark:border-gray-700 rounded-xl shadow-lg transition duration-300 hover:shadow-2xl  hover:border-[#f04a00] dark:hover:border-[#f04a00] ">
       <div className="p-3">
         <img
           src={productImage}

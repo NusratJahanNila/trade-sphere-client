@@ -7,8 +7,8 @@ import { Link } from "react-router";
 
 const Banner = () => {
   return (
-    <div className="w-11/12 mx-auto p-10 rounded-lg ">
-      <h2 className="text-3xl font-bold text-center mb-6">
+    <div className="w-7xl mx-auto p-10 rounded-lg mt-16">
+      <h2 className="text-3xl font-bold text-center mb-16">
         Your Global Trade <span className="text-[#f04a00]">Partner</span>
       </h2>
 

@@ -5,11 +5,11 @@ import Footer from '../Components/Footer/Footer';
 
 const AuthLayout = () => {
     return (
-        <div>
-            <div className="bg-base-100 shadow-sm">
+        <div className=''>
+            <div className="bg-base-100 shadow-sm ">
                 <Navbar></Navbar>
             </div>
-            <div className="min-h-[72vh]">
+            <div className="min-h-[72vh] pt-16 bg-base-200">
                 <Outlet></Outlet>
             </div>
             <div className="bg-neutral">

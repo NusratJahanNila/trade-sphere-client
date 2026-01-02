@@ -14,8 +14,8 @@ const TopRatedProduct = () => {
   }, []);
 
   return (
-    <section className="my-10 ">
-      <div className="max-w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center  shadow-sm shadow-gray-300 rounded-xl p-8 dark:bg-gray-800">
+    <section className="my-16 shadow-sm shadow-gray-300 bg-base-100 dark:bg-gray-800">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-10 ">
 
         <div className="space-y-4 text-center lg:text-left ">
           <h2 className="text-3xl font-bold flex gap-2 items-center"><TrendingUp className="text-[#f04a00] w-8 h-10"/> <span className="text-[#f04a00]">Top Rated</span> Products</h2>
