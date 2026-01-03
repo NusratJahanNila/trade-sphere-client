@@ -158,22 +158,26 @@ const DashboardLayout = () => {
                         {/* List item */}
                         <li>
                             <Link to='/dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Dashboard">
-                                <span className="is-drawer-close:hidden flex gap-2"><LayoutDashboard />My Dashboard</span>
+                                <LayoutDashboard className="my-1.5 inline-block size-4"/>
+                                <span className="is-drawer-close:hidden flex gap-2">My Dashboard</span>
                             </Link>
                         </li>
                         <li>
                             <Link to='/dashboard/add-export' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Export">
-                                <span className="is-drawer-close:hidden flex gap-2"><PackagePlus />Add Export</span>
+                                <PackagePlus className="my-1.5 inline-block size-4"/>
+                                <span className="is-drawer-close:hidden flex gap-2">Add Export</span>
                             </Link>
                         </li>
                         <li>
                             <Link to='/dashboard/my-export' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Export">
-                                <span className="is-drawer-close:hidden flex gap-2"><Truck />My Export</span>
+                                <Truck className="my-1.5 inline-block size-4" />
+                                <span className="is-drawer-close:hidden flex gap-2">My Export</span>
                             </Link>
                         </li>
                         <li>
                             <Link to='/dashboard/my-imports' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Import">
-                                <span className="is-drawer-close:hidden flex gap-2"><ShoppingCart />My Import</span>
+                                <ShoppingCart className="my-1.5 inline-block size-4"/>
+                                <span className="is-drawer-close:hidden flex gap-2">My Import</span>
                             </Link>
                         </li>
                     </ul>

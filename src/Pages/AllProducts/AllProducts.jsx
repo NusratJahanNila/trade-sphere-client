@@ -146,7 +146,7 @@ const AllProducts = () => {
     }
 
     return (
-        <div className="max-w-11/12 mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-10 sm:px-6 my-10 ">
             <div className="pt-10">
                 <title>All Products - Trade Sphere</title>
                 <h2 className='text-3xl text-center font-bold my-5'>
@@ -311,7 +311,7 @@ const AllProducts = () => {
 
             {/* Product Count */}
             {products?.length > 0 && (
-                <div className="mb-6 text-gray-600 dark:text-gray-400">
+                <div className="mb-6 px-4 text-gray-600 dark:text-gray-400">
                     Showing {products?.length} of {totalProducts} products
                     {(category !== 'all' || rating !== 'all' || searchQuery) && (
                         <button
@@ -346,7 +346,7 @@ const AllProducts = () => {
                 </div>
             ) : (
                 <>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  max-w-7xl px-4 gap-4">
                         {products?.map(product => (
                             <ProductCard key={product._id} product={product} />
                         ))}
