@@ -157,7 +157,12 @@ const DashboardLayout = () => {
 
                         {/* List item */}
                         <li>
-                            <Link to='/add-export' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Export">
+                            <Link to='/dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Dashboard">
+                                <span className="is-drawer-close:hidden flex gap-2"><LayoutDashboard />My Dashboard</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/dashboard/add-export' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Export">
                                 <span className="is-drawer-close:hidden flex gap-2"><PackagePlus />Add Export</span>
                             </Link>
                         </li>

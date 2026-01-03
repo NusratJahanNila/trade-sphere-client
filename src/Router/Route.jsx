@@ -42,10 +42,7 @@ const router = createBrowserRouter([
         element: <ProductDetails></ProductDetails>
 
       },
-      {
-        path: '/add-export',
-        element: <AddExport></AddExport>
-      },
+      
       {
         path: "/about",
         element:<About></About>
@@ -79,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/my-imports',
         element:<MyImports></MyImports>
+      },
+      {
+        path: '/dashboard/add-export',
+        element: <AddExport></AddExport>
       },
     ]
   },
