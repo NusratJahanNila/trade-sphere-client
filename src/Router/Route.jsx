@@ -18,6 +18,7 @@ import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 import Contact from "../Pages/Contact/Contact";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import Profile from "../Pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,10 @@ const router = createBrowserRouter([
         element: <ProductDetails></ProductDetails>
 
       },
-      
+      {
+        path:"/profile",
+        element: <Profile/>
+      },
       {
         path: "/about",
         element:<About></About>

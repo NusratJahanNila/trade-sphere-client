@@ -204,7 +204,7 @@ const MyExport = () => {
                                         {/* Product Column */}
                                         <td>
                                             <div className="flex items-center gap-3">
-                                                <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                                                <div className="w-12 h-12 rounded-lg overflow-hidden shrink-0">
                                                     <img 
                                                         src={product.productImage} 
                                                         alt={product.productName}
