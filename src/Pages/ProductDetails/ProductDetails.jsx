@@ -83,18 +83,20 @@ const ProductDetails = () => {
         const addedQuantity = e.target.quantity.value;
 
         const importData = {
-            productId: product._id,
-            productName: product.productName,
-            productImage: product.productImage,
-            price: product.price,
-            originCountry: product.originCountry,
-            rating: product.rating,
+            productId: product?._id,
+            productName: product?.productName,
+            productImage: product?.productImage,
+            price: product?.price,
+            originCountry: product?.originCountry,
+            rating: product?.rating,
             userQuantity: addedQuantity,
-            exportBy: product.exportBy,
-            exportAt: product.exportAt,
-            importBy: user.email
+            exportBy: product?.exportBy,
+            exportAt: product?.exportAt,
+            importBy: user?.email,
+            category: product?.category || "Uncategorized",
+            importedAt: new Date().toISOString()
         }
-        
+
         fetch(`https://trade-sphere-server.vercel.app/imports/${product._id}`, {
             method: "POST",
             headers: {
@@ -139,7 +141,7 @@ const ProductDetails = () => {
                                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
                                     {productName}
                                 </h1>
-                                
+
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {category && (
                                         <div className="badge badge-primary badge-outline dark:border-[#f04a00] dark:text-[#f04a00]">
@@ -340,7 +342,7 @@ const ProductDetails = () => {
 
                     {/* Import Button */}
                     <div className="bg-gray-50 dark:bg-gray-700 p-6 border-t border-gray-200 dark:border-gray-600">
-                        <button 
+                        <button
                             className="btn rounded-xl text-white bg-[#f04a00] hover:bg-[#e34234] border-0 w-full md:w-auto px-8 py-3 text-lg"
                             onClick={() => document.getElementById('my_modal_3').showModal()}
                         >

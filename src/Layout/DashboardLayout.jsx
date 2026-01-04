@@ -46,7 +46,7 @@ const DashboardLayout = () => {
             {/* Navbar */}
             <div className="drawer-content">
                 {/* Navbar */}
-                <nav className="navbar w-full bg-base-300">
+                <nav className="navbar bg-base-300 fixed top-0  right-0 z-50">
                     <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
                         {/* Sidebar toggle icon */}
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4">
