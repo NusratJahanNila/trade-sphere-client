@@ -1,298 +1,410 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
-import { DollarSign, Edit2, LocateFixed, Package, Star, Trash2, TrendingUp } from 'lucide-react';
+import { Edit2, Trash2, Eye, DollarSign, Star, Package, LocateFixed } from 'lucide-react';
 import Swal from 'sweetalert2';
 import Loader from '../../Components/Loader/Loader';
-// import { toast } from 'react-toastify';
-// import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
 const MyExport = () => {
-    // const navigate=useNavigate();
-    // update
-    const [selectProduct, setSelectProduct] = useState({})
-    const [refetch, setRefetch] = useState(false);
-
-    const { user, loading, setLoading } = use(AuthContext);
+    const { user } = useContext(AuthContext);
     const [products, setProducts] = useState([]);
-    // api
-    useEffect(() => {
-        fetch(`https://trade-sphere-server.vercel.app/my-export?email=${user.email}`, {
-            headers: {
-                authorization: `Bearer ${user.accessToken}`,
-                'content-type': 'application/json'
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log('after my export', data)
-                setProducts(data)
-                setLoading(false)
-            })
-    }, [user, setLoading, refetch])
+    const [selectProduct, setSelectProduct] = useState({});
+    const [refetch, setRefetch] = useState(false);
+    const [loading, setLoading] = useState(true); // Local loading state
 
-    if (loading) {
-        return <Loader></Loader>
-    }
+    useEffect(() => {
+        // If no user, don't fetch
+        if (!user?.email) {
+            setLoading(false);
+            return;
+        }
+        
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`https://trade-sphere-server.vercel.app/my-export?email=${user.email}`, {
+                    headers: {
+                        authorization: `Bearer ${user.accessToken}`,
+                        'content-type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                
+                const data = await response.json();
+                console.log('Fetched data:', data); // Debug log
+                setProducts(data || []);
+            } catch (error) {
+                console.error('Error fetching exports:', error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "Failed to load your exports. Please try again.",
+                    icon: "error",
+                    timer: 3000
+                });
+                setProducts([]);
+            } finally {
+                setLoading(false); // Always set loading to false
+            }
+        };
+
+        fetchData();
+    }, [user, refetch]); // Remove setLoading from dependencies
 
     // Update
     const handleUpdate = (product) => {
         setSelectProduct(product);
-        document.getElementById('my_modal_3').showModal()
-    }
-    // console.log('Selected product to update= ', selectProduct);
-    // modal submit
-    const handleSubmit = (e) => {
+        document.getElementById('update_modal').showModal();
+    };
+
+    // Modal submit
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = {
             productName: e.target.name.value,
             productImage: e.target.photoURL.value,
-            price: e.target.price.value,
+            price: parseFloat(e.target.price.value),
             originCountry: e.target.country.value,
-            rating: e.target.rating.value,
-            availableQuantity: e.target.quantity.value,
+            rating: parseFloat(e.target.rating.value),
+            availableQuantity: parseInt(e.target.quantity.value),
+        };
+
+        try {
+            const response = await fetch(`https://trade-sphere-server.vercel.app/my-export/${selectProduct._id}`, {
+                method: "PUT",
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${user.accessToken}`
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const data = await response.json();
+            
+            if (data.modifiedCount > 0) {
+                setRefetch(!refetch); // This will trigger re-fetch
+                document.getElementById('update_modal').close();
+                Swal.fire({
+                    title: "Success!",
+                    text: "Product updated successfully",
+                    icon: "success",
+                    timer: 2000
+                });
+            }
+        } catch (err) {
+            console.log(err);
+            Swal.fire({
+                title: "Error!",
+                text: "Failed to update product",
+                icon: "error"
+            });
         }
-        fetch(`https://trade-sphere-server.vercel.app/my-export/${selectProduct._id}`, {
-            method: "PUT",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(res => {
-                console.log('inside response')
-                return res.json()
-            })
-            .then(data => {
-                console.log(data)
-                setProducts([...products, data])
-                setRefetch(!refetch)
-                document.getElementById('my_modal_3').close();
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
+    };
 
-
-    // delete
-    const handleDelete = (product) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+    // Delete
+    const handleDelete = async (product) => {
+        const result = await Swal.fire({
+            title: "Delete Product?",
+            text: `Are you sure you want to delete "${product.productName}"?`,
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`https://trade-sphere-server.vercel.app/my-export/${product._id}`, {
-                    method: "DELETE",
-
-                })
-                    .then(res => {
-                        console.log('inside response')
-                        return res.json()
-                    })
-                    .then(data => {
-                        console.log(data)
-                        setRefetch(!refetch);
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
-                        // navigate('/all-models')
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
-
-            }
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "Cancel"
         });
+
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`https://trade-sphere-server.vercel.app/my-export/${product._id}`, {
+                    method: "DELETE",
+                    headers: {
+                        authorization: `Bearer ${user.accessToken}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.deletedCount > 0) {
+                    // Update local state immediately without re-fetching
+                    setProducts(products.filter(p => p._id !== product._id));
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Product has been deleted.",
+                        icon: "success",
+                        timer: 2000
+                    });
+                }
+            } catch (err) {
+                console.log(err);
+                Swal.fire({
+                    title: "Error!",
+                    text: "Failed to delete product",
+                    icon: "error"
+                });
+            }
+        }
+    };
+
+    // Show loader if still loading
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <Loader />
+            </div>
+        );
     }
 
     return (
-        <div className="max-w-11/12 mx-auto">
-            <title>My Export - Trade Sphere</title>
-            <div className="pt-10">
-                <h2 className="text-3xl font-bold mb-3  text-center dark:text-white mt-5">
-                    My<span className='text-[#f04a00]'> Export</span> </h2>
-                <p className="text-xl text-gray-600 text-center dark:text-gray-400 max-w-4xl mx-auto mb-5">
-                    Manage and track the products you've listed for export.
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 md:p-6 mt-10">
+            <title>My Exports - Trade Sphere</title>
+            
+            {/* Header */}
+            <div className="mb-8 text-center">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                    My <span className="text-[#f04a00]">Exports</span>
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">
+                    Manage all your exported products
                 </p>
             </div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  my-10'>
 
-                {
-                    products.map(product => <div key={product._id} className=" rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col h-[410px] border-gray-200 border">
-                        {/*Image */}
-                        <div className="rounded-xl overflow-hidden mb-3">
-                            <img
-                                src={product.productImage}
-                                alt={product.productName}
-                                className="w-full h-44 object-cover"
+            {/* Table Container */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                {products.length === 0 ? (
+                    <div className="text-center py-16">
+                        <Package className="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
+                        <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300">No Exports Yet</h3>
+                        <p className="text-gray-500 dark:text-gray-400 mt-2">You haven't listed any products for export.</p>
+                        <Link to="/add-export" className="btn btn-primary mt-4 bg-[#f04a00] border-[#f04a00] hover:bg-[#e34234]">
+                            Add Your First Export
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="overflow-x-auto">
+                        <table className="table">
+                            {/* Table Header */}
+                            <thead className="bg-gray-50 dark:bg-gray-700">
+                                <tr>
+                                    <th className="font-semibold">Product</th>
+                                    <th className="font-semibold">Country</th>
+                                    <th className="font-semibold">Price</th>
+                                    <th className="font-semibold">Rating</th>
+                                    <th className="font-semibold">Quantity</th>
+                                    <th className="font-semibold">Actions</th>
+                                </tr>
+                            </thead>
+                            
+                            {/* Table Body */}
+                            <tbody>
+                                {products.map((product) => (
+                                    <tr key={product._id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                                        {/* Product Column */}
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                                                    <img 
+                                                        src={product.productImage} 
+                                                        alt={product.productName}
+                                                        className="w-full h-full object-cover"
+                                                        onError={(e) => {
+                                                            e.target.src = 'https://via.placeholder.com/100x100?text=No+Image';
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <h3 className="font-medium line-clamp-1">
+                                                        {product.productName}
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        {/* Country Column */}
+                                        <td>
+                                            <div className="flex items-center gap-2">
+                                                <LocateFixed className="w-4 h-4 text-gray-500" />
+                                                <span>{product.originCountry}</span>
+                                            </div>
+                                        </td>
+
+                                        {/* Price Column */}
+                                        <td>
+                                            <div className="flex items-center gap-2">
+                                                <DollarSign className="w-4 h-4 text-green-600" />
+                                                <span className="font-semibold">${product.price}</span>
+                                            </div>
+                                        </td>
+
+                                        {/* Rating Column */}
+                                        <td>
+                                            <div className="flex items-center gap-2">
+                                                <Star className="w-4 h-4 text-yellow-500" />
+                                                <span>{product.rating}</span>
+                                            </div>
+                                        </td>
+
+                                        {/* Quantity Column */}
+                                        <td>
+                                            <div className="flex items-center gap-2">
+                                                <Package className="w-4 h-4 text-blue-500" />
+                                                <span>{product.availableQuantity}</span>
+                                            </div>
+                                        </td>
+
+                                        {/* Actions Column */}
+                                        <td>
+                                            <div className="flex gap-2">
+                                                {/* Update Button */}
+                                                <button
+                                                    onClick={() => handleUpdate(product)}
+                                                    className="btn btn-sm btn-outline border-[#f04a00] text-[#f04a00] hover:bg-[#f04a00] hover:text-white"
+                                                    title="Edit"
+                                                >
+                                                    <Edit2 className="w-4 h-4" />
+                                                </button>
+                                                
+                                                {/* Delete Button */}
+                                                <button
+                                                    onClick={() => handleDelete(product)}
+                                                    className="btn btn-sm btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                                                    title="Delete"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                                
+                                                {/* View Button */}
+                                                <Link
+                                                    to={`/products/${product._id}`}
+                                                    className="btn btn-sm btn-outline border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
+                                                    title="View Details"
+                                                >
+                                                    <Eye className="w-4 h-4" />
+                                                </Link>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
+
+            {/* Update Modal */}
+            <dialog id="update_modal" className="modal">
+                <div className="modal-box max-w-md">
+                    <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-4 top-4">✕</button>
+                    </form>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <h3 className="text-xl font-bold text-center mb-4">
+                            Update Product
+                        </h3>
+                        
+                        {/* Product Name */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Product Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                defaultValue={selectProduct.productName}
+                                className="input input-bordered w-full"
+                                required
                             />
                         </div>
 
-                        {/* Info */}
-                        <div className="px-4 flex-1 flex flex-col justify-between">
-
-                            <h3 className="text-lg font-semibold mb-2 line-clamp-1">
-                                {product.productName}
-                            </h3>
-                            <div className="badge badge-primary badge-outline text-xs p-3">
-                                <LocateFixed className="w-3 h-3 mr-1" />
-                                {product.originCountry}
-                            </div>
-
-                            <div className="grid grid-cols-3 gap-3 my-1 border-y py-3 border-gray-100">
-
-                                <div className="flex flex-col ">
-                                    <DollarSign className="w-4 h-4 text-green-600" />
-                                    <span className="text-xs text-gray-500">Price</span>
-                                    <p className="font-semibold text-md text-green-600">${product.price}</p>
-                                </div>
-
-                                <div className="flex flex-col ">
-                                    <TrendingUp className="w-4 h-4 text-yellow-500" />
-                                    <span className="text-xs text-gray-500">Rating</span>
-                                    <p className="ml-1 font-semibold text-md text-yellow-500">{product.rating}</p>
-                                </div>
-
-                                <div className="flex flex-col ">
-                                    <Package className="w-4 h-4 text-blue-500" />
-                                    <span className="text-xs text-gray-500">Quantity</span>
-                                    <p className="font-semibold text-md text-blue-500">{product.availableQuantity}</p>
-                                </div>
-                            </div>
+                        {/* Product Image URL */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Image URL</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="photoURL"
+                                defaultValue={selectProduct.productImage}
+                                className="input input-bordered w-full"
+                                required
+                            />
                         </div>
 
-                        {/*  Buttons */}
-                        <div className="flex gap-3 mt-2">
+                        {/* Price */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Price ($)</span>
+                            </label>
+                            <input
+                                type="number"
+                                name="price"
+                                defaultValue={selectProduct.price}
+                                className="input input-bordered w-full"
+                                required
+                                min="0"
+                            />
+                        </div>
 
-                            {/* Update */}
-                            <button
-                                className="flex-1 btn text-white bg-[#f04a00] hover:bg-[#e34234] rounded-xl"
-                                onClick={() => handleUpdate(product)}>
-                                <Edit2 className="w-4 h-4 mr-1" /> Update
+                        {/* Origin Country */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Origin Country</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="country"
+                                defaultValue={selectProduct.originCountry}
+                                className="input input-bordered w-full"
+                                required
+                            />
+                        </div>
+
+                        {/* Rating */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Rating</span>
+                            </label>
+                            <input
+                                type="number"
+                                name="rating"
+                                defaultValue={selectProduct.rating}
+                                className="input input-bordered w-full"
+                                required
+                                min="0"
+                                max="5"
+                                step="0.1"
+                            />
+                        </div>
+
+                        {/* Available Quantity */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Available Quantity</span>
+                            </label>
+                            <input
+                                type="number"
+                                name="quantity"
+                                defaultValue={selectProduct.availableQuantity}
+                                className="input input-bordered w-full"
+                                required
+                                min="0"
+                            />
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="modal-action">
+                            <button type="button" className="btn btn-ghost" onClick={() => document.getElementById('update_modal').close()}>
+                                Cancel
                             </button>
-
-                            {/* Delete */}
-                            <button onClick={() => handleDelete(product)} className="flex-1 btn  btn-outline border-2 border-[#e34234] text-[#e34324] hover:text-white hover:bg-[#f04a00] rounded-xl">
-                                <Trash2 className="w-4 h-4 mr-1" /> Delete
+                            <button type="submit" className="btn btn-primary bg-[#f04a00] border-[#f04a00] hover:bg-[#e34234]">
+                                Update
                             </button>
                         </div>
-                    </div>)
-                }
-                {/* Modal */}
-                <dialog id="my_modal_3" className="modal">
-                    <div className="modal-box">
-                        <form method="dialog">
-                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:bg-red-600 hover:text-white">✕</button>
-                        </form>
-                        <form key={selectProduct._id} onSubmit={handleSubmit} className="space-y-4">
-                            <h2 className='text-center text-xl font-bold '>Update here!</h2>
-                            {/* name */}
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-medium">Product Name</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Enter product name"
-                                    className="input input-bordered w-full"
-                                    required
-                                    defaultValue={selectProduct.productName}
-                                />
-                            </div>
-
-                            {/*  img */}
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-medium">Product Image URL</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="photoURL"
-                                    placeholder="Enter image url"
-                                    className="input input-bordered w-full"
-                                    required
-                                    defaultValue={selectProduct.productImage}
-                                />
-                            </div>
-
-                            {/* price */}
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-medium">Price</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="price"
-                                    placeholder="Enter price"
-                                    className="input input-bordered w-full"
-                                    required
-                                    defaultValue={selectProduct.price}
-                                />
-                            </div>
-
-                            {/* origin */}
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-medium">Origin Country</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="country"
-                                    placeholder="Enter product's origin"
-                                    className="input input-bordered w-full"
-                                    required
-                                    defaultValue={selectProduct.originCountry}
-                                />
-                            </div>
-
-                            {/* rating */}
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-medium">Rating</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="rating"
-                                    placeholder="Enter product's rating of 5"
-                                    className="input input-bordered w-full"
-                                    required
-                                    defaultValue={selectProduct.rating}
-                                />
-                            </div>
-
-                            {/* quantity */}
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-medium">Available Quantity</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    name="quantity"
-                                    placeholder="Enter product's quantity"
-                                    className="input input-bordered w-full"
-                                    required
-                                    defaultValue={selectProduct.availableQuantity}
-                                />
-                            </div>
-
-                            {/* btn */}
-                            <div className="form-control mt-6">
-                                <button type="submit" className="btn rounded-xl text-white bg-[#f04a00] hover:bg-[#e34234] w-full">
-                                    Update
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </dialog>
-            </div>
+                    </form>
+                </div>
+            </dialog>
         </div>
     );
 };
