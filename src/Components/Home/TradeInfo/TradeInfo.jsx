@@ -2,12 +2,12 @@ import { Globe, Package, TrendingUp, Users } from 'lucide-react';
 
 const TradeInfo = () => {
     return (
-        <div className="p-10 max-w-7xl mx-auto">
+        <div className="px-10 max-w-7xl mx-auto mt-6">
             <div className="max-w-7xl mx-auto text-center">
                 <h2 className="text-3xl font-bold mb-3  dark:text-white">
                     Trade<span className='text-[#f04a00]'>Sphere</span> : Global Trade By The Numbers
                 </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-16">
+                <p className="text-gray-600 mx-auto dark:text-gray-300 mb-8 max-w-xl text-center">
                     Join the fastest-growing community of importers and exporters transforming global supply chains.
                 </p>
 

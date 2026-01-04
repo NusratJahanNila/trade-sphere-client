@@ -131,14 +131,14 @@ const AddExport = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto bg-base-100 shadow-lg rounded-xl p-10 ">
+        <div className="max-w-11/12 mx-auto bg-base-100 shadow-lg rounded-xl p-6 mt-16 ">
             <title>Add Export - Trade Sphere</title>
             
             <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-2">
                     <span className='text-[#f04a00]'>Add</span> Export Product
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mt-2">
+                <p className="text-gray-600 mx-auto dark:text-gray-300 mb-8 max-w-xl text-center">
                     Fill in the details below to list your product for export
                 </p>
             </div>

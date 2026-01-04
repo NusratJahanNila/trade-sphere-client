@@ -38,9 +38,9 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-12 md:py-16 lg:py-20 bg-white dark:bg-gray-800">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 lg:mb-14">
+    <section className="py-16 bg-white dark:bg-gray-800">
+      <div className="max-w-4xl mx-auto px-2 sm:px-4 lg:px-6">
+        <div className="text-center mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Frequently Asked <span className="text-[#f04a00]">Questions</span>
           </h2>

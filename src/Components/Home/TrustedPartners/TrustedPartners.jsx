@@ -1,27 +1,40 @@
-// components/TrustedPartners.jsx
+// components/TrustedPartners.jsx (Simpler Carousel Version)
 import { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const TrustedPartners = () => {
-    const [isPaused, setIsPaused] = useState(false);
-
     const partners = [
-        { name: "DHL", logo: "https://cdn.worldvectorlogo.com/logos/dhl-2.svg", color: "#FFCC00" },
-        { name: "FedEx", logo: "https://cdn.worldvectorlogo.com/logos/fedex-express-6.svg", color: "#4D148C" },
-        { name: "Maersk", logo: "https://cdn.worldvectorlogo.com/logos/maersk-2.svg", color: "#E40521" },
-        { name: "UPS", logo: "https://cdn.worldvectorlogo.com/logos/ups-3.svg", color: "#FFB500" },
-        { name: "HSBC", logo: "https://cdn.worldvectorlogo.com/logos/hsbc-2.svg", color: "#DB0011" },
-        { name: "PayPal", logo: "https://cdn.worldvectorlogo.com/logos/paypal-3.svg", color: "#003087" },
-        { name: "Visa", logo: "https://cdn.worldvectorlogo.com/logos/visa.svg", color: "#1A1F71" },
-        { name: "Mastercard", logo: "https://cdn.worldvectorlogo.com/logos/mastercard-2.svg", color: "#EB001B" }
+        { name: "DHL", color: "#FFCC00" },
+        { name: "FedEx", color: "#4D148C" },
+        { name: "Maersk", color: "#E40521" },
+        { name: "UPS", color: "#FFB500" },
+        { name: "HSBC", color: "#DB0011" },
+        { name: "PayPal", color: "#003087" },
+        { name: "Visa", color: "#1A1F71" },
+        { name: "Mastercard", color: "#EB001B" }
     ];
 
-    // Duplicate partners for seamless loop
-    const duplicatedPartners = [...partners, ...partners];
+    const itemsPerPage = 4;
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => 
+            prevIndex + itemsPerPage >= partners.length ? 0 : prevIndex + itemsPerPage
+        );
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => 
+            prevIndex - itemsPerPage < 0 ? partners.length - itemsPerPage : prevIndex - itemsPerPage
+        );
+    };
+
+    const visiblePartners = partners.slice(currentIndex, currentIndex + itemsPerPage);
 
     return (
-        <section className="py-12 md:py-16 lg:py-20 bg-white dark:bg-gray-800 overflow-hidden">
+        <section className="mt-10 py-6 dark:bg-gray-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-                <div className="text-center mb-10 lg:mb-14">
+                <div className="text-center mb-8">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                         Trusted By <span className="text-[#f04a00]">Global Leaders</span>
                     </h2>
@@ -30,70 +43,70 @@ const TrustedPartners = () => {
                     </p>
                 </div>
 
-                {/* Marquee Container */}
-                <div
-                    className="relative"
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                >
-                    {/* Gradient Overlays */}
-                    <div className="absolute left-0 top-0 w-16 sm:w-24 h-full bg-linear-to-r from-white dark:from-gray-800 to-transparent z-10"></div>
-                    <div className="absolute right-0 top-0 w-16 sm:w-24 h-full bg-linear-to-l from-white dark:from-gray-800 to-transparent z-10"></div>
+                {/* Carousel Container */}
+                <div className="relative">
+                    {/* Navigation Buttons */}
+                    <button
+                        onClick={prevSlide}
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 z-10 btn btn-circle btn-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+                    >
+                        <ChevronLeft className="w-5 h-5" />
+                    </button>
 
-                    {/* Marquee */}
-                    <div className={`overflow-hidden ${isPaused ? '' : 'animate-marquee'}`}>
-                        <div className="flex space-x-8 sm:space-x-12 py-4">
-                            {duplicatedPartners.map((partner, index) => (
+                    <button
+                        onClick={nextSlide}
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 z-10 btn btn-circle btn-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+                    >
+                        <ChevronRight className="w-5 h-5" />
+                    </button>
+
+                    {/* Partners Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 px-8">
+                        {visiblePartners.map((partner, index) => (
+                            <div
+                                key={index}
+                                className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-[#f04a00]/50 p-6 flex items-center justify-center h-32"
+                            >
                                 <div
-                                    key={index}
-                                    className="shrink-0 w-32 sm:w-40 h-20 sm:h-24 bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-[#f04a00]/50 flex items-center justify-center p-4"
+                                    className="text-xl md:text-2xl font-bold"
+                                    style={{ color: partner.color }}
                                 >
-                                    {/* For production, use actual SVG/logos */}
-                                    <div
-                                        className="text-2xl sm:text-3xl font-bold text-center"
-                                        style={{ color: partner.color }}
-                                    >
-                                        {partner.name}
-                                    </div>
+                                    {partner.name}
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
 
+                    {/* Dots Indicator */}
+                    <div className="flex justify-center gap-2 mt-6">
+                        {Array.from({ length: Math.ceil(partners.length / itemsPerPage) }).map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setCurrentIndex(index * itemsPerPage)}
+                                className={`w-2 h-2 rounded-full transition-colors ${
+                                    currentIndex === index * itemsPerPage 
+                                        ? 'bg-[#f04a00]' 
+                                        : 'bg-gray-300 dark:bg-gray-600'
+                                }`}
+                            />
+                        ))}
+                    </div>
                 </div>
-
-                {/*  marquee animation */}
-                <style jsx>{`
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          @keyframes marquee-reverse {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-          }
-          .animate-marquee {
-            animation: marquee 40s linear infinite;
-          }
-          .animate-marquee-reverse {
-            animation: marquee-reverse 40s linear infinite;
-          }
-        `}</style>
 
                 {/* Partner Benefits */}
                 <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                     {[
                         {
                             title: "Integrated Logistics",
-                            description: "Seamless shipping with real-time tracking across all partners"
+                            description: "Seamless shipping with real-time tracking"
                         },
                         {
                             title: "Secure Payments",
-                            description: "Multiple payment options with fraud protection & escrow"
+                            description: "Multiple payment options with fraud protection"
                         },
                         {
                             title: "Global Network",
-                            description: "Access to local expertise in 150+ countries worldwide"
+                            description: "Local expertise in 150+ countries worldwide"
                         }
                     ].map((benefit, index) => (
                         <div

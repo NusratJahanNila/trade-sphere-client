@@ -4,10 +4,10 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-2">
             About <span className="text-[#f04a00]">TradeSphere</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+          <p className="text-gray-600 mx-auto dark:text-gray-300 mb-8 max-w-xl text-center">
             Learn about our mission, team, and values
           </p>
         </div>

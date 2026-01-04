@@ -7,10 +7,11 @@ import { Link } from "react-router";
 
 const Banner = () => {
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10 rounded-lg mt-16">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 md:mb-16">
+    <div className="w-full px-4 sm:px-6 lg:px-10 py-6 md:py-10 rounded-lg mt-16">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-2">
         Your Global Trade <span className="text-[#f04a00]">Partner</span>
       </h2>
+      <p className="text-gray-600 mx-auto dark:text-gray-300 mb-8 max-w-xl text-center">Connecting buyers and exporters worldwide with secure, seamless trade solutions.</p>
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
